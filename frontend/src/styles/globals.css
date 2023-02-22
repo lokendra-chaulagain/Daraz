@@ -8,6 +8,7 @@ p {
 :root {
   --color-white: #fefffe;
   --color-orange: #fd5403;
+  --color-grey: #bdbfc5;
 }
 
 html,
@@ -23,8 +24,12 @@ body {
 }
 
 .color_orange {
-    color: var(--color-orange);
-  }
+  color: var(--color-orange);
+}
+
+.color_grey {
+  color: var(--color-grey);
+}
 
 .shadow_0 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -32,5 +37,6 @@ body {
 .font_small {
   font-size: 11px;
 }
-
-
+.cursor_pointer {
+  cursor: pointer;
+}
