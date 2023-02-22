@@ -1,0 +1,39 @@
+.diamond_image_div {
+  position: relative;
+  height: 42px;
+  width: 42px;
+}
+
+/* Categories Carousel======================> */
+.category_carousel_img_div {
+  position: relative;
+  height: 60px;
+  width: 60px;
+}
+
+/* Flash Sale======================> */
+.flash_sale_product_div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+}
+
+.flash_sale_img_div {
+  position: relative;
+  height: 90px;
+  width: 80%;
+}
+
+.flash_sale_off {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-size: 10px;
+  padding: 1px 3px;
+  font-weight: 600;
+}
