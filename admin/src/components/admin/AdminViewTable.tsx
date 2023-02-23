@@ -1,40 +1,33 @@
 import React, { useState } from "react";
-import { Button, Space, Table } from "antd";
+import { Button, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import UserAddDrawer from "./UserAddDrawer";
-import UserEditDrawer from "./UserEditDrawer";
-import UserViewDrawer from "./UserViewDrawer";
+import { DeleteOutlined } from "@ant-design/icons";
+import CategoryAddDrawer from "./AdminAddDrawer";
+import CategoryEditDrawer from "./AdminEditDrawer";
+import AdminAddDrawer from "./AdminAddDrawer";
+import AdminEditDrawer from "./AdminEditDrawer";
 
 interface DataType {
   key: React.Key;
   username: string;
   name: string;
-  email: string;
-  phone: number;
-  address: string;
+  createdAt: string;
 }
 
 const columns: ColumnsType<DataType> = [
   {
-    title: "Name",
+    title: "Image",
     dataIndex: "name",
   },
 
   {
-    title: "Username",
+    title: "Added By",
     dataIndex: "username",
   },
+
   {
-    title: "Email",
-    dataIndex: "email",
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
+    title: "Created At",
+    dataIndex: "createdAt",
   },
 ];
 
@@ -43,14 +36,12 @@ for (let i = 0; i < 46; i++) {
   data.push({
     key: i,
     name: `Edward King ${i}`,
-    phone: 32,
-    address: `London, Park Lane no. ${i}`,
     username: "loki",
-    email: "loki@fgmail.com",
+    createdAt: "2020/3/3",
   });
 }
 
-export default function UserViewTable() {
+export default function AdminViewTable() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -89,10 +80,15 @@ export default function UserViewTable() {
         </div>
 
         <div className="d-flex gap-3">
-          <UserAddDrawer/>
-          <UserEditDrawer/>
-          <UserViewDrawer/>
-          <Button type="primary">Delete</Button>
+          <AdminAddDrawer />
+          <AdminEditDrawer />
+
+          <Button
+            className="d-flex align-items-center"
+            type="primary"
+            icon={<DeleteOutlined />}>
+            Delete
+          </Button>
         </div>
       </div>
       <Table
