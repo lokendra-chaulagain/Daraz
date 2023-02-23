@@ -1,0 +1,41 @@
+.single_product_img_div {
+  position: relative;
+  height: 40vh;
+}
+
+.recommended_img_div {
+  position: relative;
+  height: 14vh;
+}
+.recommended_carousel_price {
+  text-align: center;
+}
+
+.vendor_logo {
+  position: relative;
+  height: 3vh;
+  width: 3vh;
+  border-radius: 50%;
+}
+
+.footer_buy {
+  background-color: rgb(255, 208, 0);
+  color: var(--color-white);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 24px;
+  cursor: pointer;
+}
+
+.add_cart {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 20px;
+  cursor: pointer;
+}

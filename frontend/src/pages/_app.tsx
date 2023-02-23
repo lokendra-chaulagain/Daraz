@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import HomeHeader from "../components/home/HomeHeader";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
+import ProductNavbar from "../components/product/ProductNavbar";
 
 export default function App({ Component, pageProps }: AppProps) {
   // useEffect(() => {
@@ -12,10 +13,11 @@ export default function App({ Component, pageProps }: AppProps) {
   // }, []);
   const router = useRouter();
   const currentRoute = router.pathname.split("/")[1];
+  const slug = router.query.slug;
 
   return (
     <div className="d-flex flex-column h-100 ">
-      {currentRoute !== "login" && <HomeHeader />}
+      {currentRoute !== "login" && !slug && <HomeHeader />}
       <Component {...pageProps} />
       {currentRoute !== "login" && <Footer />}
     </div>
