@@ -20,6 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .google {
@@ -31,6 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .apple {
@@ -42,6 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .create_account {
@@ -51,11 +54,9 @@
   font-size: 18px;
 }
 
-
 .login_password {
-   border: 1px solid var(--color-white);
-    color: var(--color-white);
-    border-radius: 2px;
-    font-size: 18px;
-  }
-  
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+  border-radius: 2px;
+  font-size: 18px;
+}
