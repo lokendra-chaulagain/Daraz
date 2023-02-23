@@ -7,6 +7,7 @@ import Topbar from "@/components/Topbar";
 import Leftbar from "@/components/Leftbar";
 import CustomBreadCumb from "@/components/CustomBreadCumb";
 import Bottombar from "@/components/Bottombar";
+import Login from "@/components/Login";
 const { Content } = Layout;
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -14,19 +15,27 @@ export default function App({ Component, pageProps }: AppProps) {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const user = true;
+
   return (
-    <Layout style={{ height: "95vh" }}>
-      <Topbar />
-      <Content style={{ padding: "0 10px" }}>
-        <CustomBreadCumb />
-        <Layout style={{ padding: "24px 0", background: colorBgContainer, height: "100%" }}>
-          <Leftbar />
-          <Content style={{ padding: "0 24px" }}>
-            <Component {...pageProps} />
+    <>
+      {user ? (
+        <Layout style={{ height: "95vh" }}>
+          <Topbar />
+          <Content style={{ padding: "0 10px" }}>
+            <CustomBreadCumb />
+            <Layout style={{ padding: "24px 0", background: colorBgContainer, height: "100%" }}>
+              <Leftbar />
+              <Content style={{ padding: "0 24px" }}>
+                <Component {...pageProps} />
+              </Content>
+            </Layout>
           </Content>
+          <Bottombar />
         </Layout>
-      </Content>
-      <Bottombar />
-    </Layout>
+      ) : (
+        <Login />
+      )}
+    </>
   );
 }

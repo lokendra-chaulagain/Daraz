@@ -80,7 +80,6 @@ export default function CategoryViewTable() {
         <div className="d-flex gap-3">
           <CategoryAddDrawer />
           <CategoryEditDrawer />
-
           <Button
             className="d-flex align-items-center"
             type="primary"

@@ -7,6 +7,8 @@ import { BannerModule } from './modules/banner/banner.module';
 import { ProductModule } from './modules/product/product.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { SearchTagModule } from './modules/search-tag/search-tag.module';
+import { CommentModule } from './modules/comment/comment.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { AuthModule } from './modules/auth/auth.module';
     ProductModule,
     UserModule,
     AuthModule,
+    SearchTagModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
