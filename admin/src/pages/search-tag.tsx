@@ -1,10 +1,10 @@
-import SearchTagTable from "@/components/SearchTagTable";
+import SearchTagViewTable from "@/components/searchTag/SearchTagViewTable";
 import React from "react";
 
 export default function SearchTag() {
   return (
     <div>
-      <SearchTagTable />
+      <SearchTagViewTable />
     </div>
   );
 }
