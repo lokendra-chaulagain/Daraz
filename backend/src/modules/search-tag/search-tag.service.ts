@@ -12,6 +12,12 @@ export class SearchTagService {
   ) {}
 
   async create(createSearchTagDto: CreateSearchTagDto) {
+    const duplicate = await this.tagModel.findOne({
+      name: createSearchTagDto.name,
+    });
+    if (duplicate)
+      throw new HttpException('Already Exists', HttpStatus.CONFLICT);
+
     try {
       const newTag = new this.tagModel(createSearchTagDto);
       return await newTag.save();

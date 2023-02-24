@@ -2,26 +2,25 @@ import React, { useState } from "react";
 import { Button, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { DeleteOutlined } from "@ant-design/icons";
-import CategoryAddDrawer from "./CategoryAddDrawer";
-import CategoryEditDrawer from "./BannerEditDrawer";
-import { useGetAllCategoryQuery } from "@/redux/api/globalApi";
+import SearchTagAddDrawer from "./SearchTagAddDrawer";
+import { useGetAllSearchTagQuery } from "@/redux/api/globalApi";
 
 interface DataType {
   key: React.Key;
-  username: string;
   name: string;
+  addedBy: string;
   createdAt: string;
 }
 
 const columns: ColumnsType<DataType> = [
   {
-    title: "Image",
+    title: "Tag",
     dataIndex: "name",
   },
 
   {
     title: "Added By",
-    dataIndex: "username",
+    dataIndex: "addedBy",
   },
 
   {
@@ -30,19 +29,19 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const data: DataType[] = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    username: "loki",
-    createdAt: "2020/3/3",
-  });
-}
+export default function SearchTagViewTable() {
+  const { data: tags } = useGetAllSearchTagQuery();
+  console.log(tags);
 
-export default function CategoryViewTable() {
-  const { data: categories } = useGetAllCategoryQuery();
-  console.log(categories);
+  const data: DataType[] = [];
+  for (let i = 0; i < 46; i++) {
+    data.push({
+      key: i,
+      name: `Edward King ${i}`,
+      addedBy: "loki",
+      createdAt: "2020/3/3",
+    });
+  }
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [loading, setLoading] = useState(false);
@@ -82,8 +81,8 @@ export default function CategoryViewTable() {
         </div>
 
         <div className="d-flex gap-3">
-          <CategoryAddDrawer />
-          <CategoryEditDrawer />
+          <SearchTagAddDrawer />
+
           <Button
             className="d-flex align-items-center"
             type="primary"

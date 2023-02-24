@@ -8,6 +8,8 @@ import Leftbar from "@/components/Leftbar";
 import CustomBreadCumb from "@/components/CustomBreadCumb";
 import Bottombar from "@/components/Bottombar";
 import Login from "@/components/Login";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store/store";
 const { Content } = Layout;
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -18,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const user = true;
 
   return (
-    <>
+    <Provider store={store}>
       {user ? (
         <Layout style={{ height: "95vh" }}>
           <Topbar />
@@ -36,6 +38,6 @@ export default function App({ Component, pageProps }: AppProps) {
       ) : (
         <Login />
       )}
-    </>
+    </Provider>
   );
 }

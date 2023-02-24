@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Button, Space, Table } from "antd";
+import { Button, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import BannerAddDrawer from "./BannerAddDrawer";
-import BannedEditDrawer from "./BannerEditDrawer";
 import BannerEditDrawer from "./BannerEditDrawer";
 import { DeleteOutlined } from "@ant-design/icons";
+import { useGetAllBannerQuery } from "@/redux/api/globalApi";
 
 interface DataType {
   key: React.Key;
@@ -41,6 +41,8 @@ for (let i = 0; i < 46; i++) {
 }
 
 export default function BannerViewTable() {
+  const { data: banners } = useGetAllBannerQuery();
+  console.log(banners);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [loading, setLoading] = useState(false);
 

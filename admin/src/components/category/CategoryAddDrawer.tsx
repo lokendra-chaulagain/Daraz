@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Col, Drawer, Form, Input, Row, Space } from "antd";
+import { useCreateCategoryMutation } from "@/redux/api/globalApi";
 
 export default function CategoryAddDrawer() {
+  const [createCategory] = useCreateCategoryMutation();
   const [open, setOpen] = useState(false);
+  const [form] = Form.useForm();
 
   const showDrawer = () => {
     setOpen(true);
@@ -12,8 +15,14 @@ export default function CategoryAddDrawer() {
   const onClose = () => {
     setOpen(false);
   };
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+
+  const handleCreateCategory = (values: any) => {
+    try {
+      createCategory(values);
+      form.resetFields();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -32,7 +41,8 @@ export default function CategoryAddDrawer() {
         open={open}
         bodyStyle={{ paddingBottom: 80 }}>
         <Form
-          onFinish={onFinish}
+          onFinish={handleCreateCategory}
+          form={form}
           layout="vertical"
           requiredMark>
           <Row gutter={16}>

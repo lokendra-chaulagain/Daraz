@@ -12,6 +12,12 @@ export class CategoryService {
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto) {
+    const duplicate = await this.categoryModel.findOne({
+      name: createCategoryDto.name,
+    });
+    if (duplicate)
+      throw new HttpException('Category Already Exists', HttpStatus.CONFLICT);
+
     try {
       const newCategory = new this.categoryModel(createCategoryDto);
       return await newCategory.save();

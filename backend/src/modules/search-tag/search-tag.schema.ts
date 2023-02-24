@@ -3,10 +3,13 @@ import { Document } from 'mongoose';
 
 export type SearchTagDocument = SearchTag & Document;
 
-@Schema({ timestamps: true })
+@Schema()
 export class SearchTag {
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   name: string;
+
+  @Prop({ required: true, default: Date.now })
+  createdAt: Date;
 }
 
 export const SearchTagSchema = SchemaFactory.createForClass(SearchTag);
