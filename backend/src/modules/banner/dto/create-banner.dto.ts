@@ -1,8 +1,7 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, MaxLength } from 'class-validator';
 
 export class CreateBannerDto {
+  @MaxLength(200)
   @IsNotEmpty()
-  imageUrl: string;
-
-  isActive: boolean;
+  image: string;
 }

@@ -4,6 +4,7 @@ import type { ColumnsType } from "antd/es/table";
 import { DeleteOutlined } from "@ant-design/icons";
 import CategoryAddDrawer from "./CategoryAddDrawer";
 import CategoryEditDrawer from "./BannerEditDrawer";
+import { useGetAllCategoryQuery } from "@/redux/api/globalApi";
 
 interface DataType {
   key: React.Key;
@@ -40,6 +41,9 @@ for (let i = 0; i < 46; i++) {
 }
 
 export default function CategoryViewTable() {
+  const { data: categories } = useGetAllCategoryQuery();
+  console.log(categories);
+
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [loading, setLoading] = useState(false);
 

@@ -7,10 +7,11 @@ export class UpdateCategoryDto extends PartialType(CreateCategoryDto) {
   @IsNotEmpty()
   name: string;
 
-  @MaxLength(50)
+  @MaxLength(200)
   @IsNotEmpty()
-  imageUrl: string;
+  image: string;
 
   @IsNotEmpty()
-  isActive: boolean;
+  @MaxLength(1500)
+  description: boolean;
 }
