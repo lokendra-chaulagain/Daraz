@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Topbar />
           <Content style={{ padding: "0 10px" }}>
             <CustomBreadCumb />
-            <Layout style={{ padding: "24px 0", background: colorBgContainer, height: "100%" }}>
+            <Layout   style={{ padding: "24px 0", background: colorBgContainer, height: "100%" }}>
               <Leftbar />
               <Content style={{ padding: "0 24px" }}>
                 <Component {...pageProps} />
