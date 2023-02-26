@@ -1,26 +1,15 @@
 import React, { useState } from "react";
 import { Button, Table } from "antd";
-import type { ColumnsType } from "antd/es/table";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useGetAllSizeQuery } from "@/redux/api/globalApi";
+import { useDeleteSizeMutation, useGetAllSizeQuery } from "@/redux/api/globalApi";
 import SizeAddDrawer from "./SizeAddDrawer";
+import moment from "moment";
+import toast from "react-hot-toast";
 
-interface DataType {
-  key: React.Key;
-  username: string;
-  name: string;
-  createdAt: string;
-}
-
-const columns: ColumnsType<DataType> = [
+const columns = [
   {
-    title: "Image",
+    title: "Sizes",
     dataIndex: "name",
-  },
-
-  {
-    title: "Added By",
-    dataIndex: "username",
   },
 
   {
@@ -29,32 +18,25 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const data: DataType[] = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    username: "loki",
-    createdAt: "2020/3/3",
-  });
-}
-
 export default function SizeViewTable() {
   const { data: sizes } = useGetAllSizeQuery();
-  console.log(sizes);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [deleteSize] = useDeleteSizeMutation();
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const success = () => toast.success("Success");
+  const failure = () => toast.error("Failed");
 
-  const start = () => {
-    setLoading(true);
-    // ajax request after empty completing
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
+  const dataSource =
+    sizes &&
+    sizes.map((size, index) => ({
+      key: size._id,
+      name: size.name,
+      createdAt: moment(size.createdAt).format("YYYY-MM-DD"),
+    }));
+
+  const handleUnSelect = () => {
+    setSelectedRowKeys([]);
   };
-
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+  const onSelectChange = (newSelectedRowKeys: any) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
@@ -65,16 +47,27 @@ export default function SizeViewTable() {
   };
   const hasSelected = selectedRowKeys.length > 0;
 
+  const handleDelete = () => {
+    try {
+      for (const id of selectedRowKeys) {
+        deleteSize(id);
+        success();
+      }
+    } catch (error) {
+      console.log(error);
+      failure();
+    }
+  };
+
   return (
     <div>
       <div className="d-flex align-items-center justify-content-between">
         <div className="d-flex gap-3 align-items-center">
           <Button
             type="primary"
-            onClick={start}
-            disabled={!hasSelected}
-            loading={loading}>
-            Reload
+            onClick={handleUnSelect}
+            disabled={!hasSelected}>
+            Unselect
           </Button>
           <span>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}</span>
         </div>
@@ -83,6 +76,8 @@ export default function SizeViewTable() {
           <SizeAddDrawer />
 
           <Button
+            onClick={handleDelete}
+            disabled={!hasSelected}
             className="d-flex align-items-center"
             type="primary"
             icon={<DeleteOutlined />}>
@@ -93,7 +88,7 @@ export default function SizeViewTable() {
       <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={data}
+        dataSource={dataSource}
       />
     </div>
   );

@@ -1,62 +1,57 @@
 import React, { useState } from "react";
 import { Button, Table } from "antd";
-import type { ColumnsType } from "antd/es/table";
 import { DeleteOutlined } from "@ant-design/icons";
 import CategoryAddDrawer from "./CategoryAddDrawer";
 import CategoryEditDrawer from "./BannerEditDrawer";
-import { useGetAllCategoryQuery } from "@/redux/api/globalApi";
+import { useDeleteCategoryMutation, useGetAllCategoryQuery } from "@/redux/api/globalApi";
+import moment from "moment";
+import toast from "react-hot-toast";
 
-interface DataType {
-  key: React.Key;
-  username: string;
-  name: string;
-  createdAt: string;
-}
-
-const columns: ColumnsType<DataType> = [
+const columns = [
   {
-    title: "Image",
+    title: "Category Name",
     dataIndex: "name",
   },
 
   {
-    title: "Added By",
-    dataIndex: "username",
+    title: "Image",
+    dataIndex: "image",
   },
 
   {
     title: "Created At",
     dataIndex: "createdAt",
   },
-];
 
-const data: DataType[] = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    username: "loki",
-    createdAt: "2020/3/3",
-  });
-}
+  {
+    title: "Updated At",
+    dataIndex: "updatedAt",
+  },
+];
 
 export default function CategoryViewTable() {
   const { data: categories } = useGetAllCategoryQuery();
-  console.log(categories);
+  const [deleteCategory] = useDeleteCategoryMutation();
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
+  const success = () => toast.success("Success");
+  const failure = () => toast.error("Failed");
 
-  const start = () => {
-    setLoading(true);
-    // ajax request after empty completing
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
+  const dataSource =
+    categories &&
+    categories.map((category, index) => ({
+      key: category._id,
+      name: category.name,
+      image: category.image,
+      createdAt: moment(category.createdAt).format("YYYY-MM-DD"),
+      updatedAt: moment(category.updatedAt).format("YYYY-MM-DD"),
+    }));
+
+  const handleUnSelect = () => {
+    setSelectedRowKeys([]);
   };
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+  const onSelectChange = (newSelectedRowKeys: any) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
@@ -66,6 +61,19 @@ export default function CategoryViewTable() {
     onChange: onSelectChange,
   };
   const hasSelected = selectedRowKeys.length > 0;
+  const selectedLength = selectedRowKeys.length;
+
+  const handleDelete = () => {
+    try {
+      for (const id of selectedRowKeys) {
+        deleteCategory(id);
+        success();
+      }
+    } catch (error) {
+      console.log(error);
+      failure();
+    }
+  };
 
   return (
     <div>
@@ -73,18 +81,18 @@ export default function CategoryViewTable() {
         <div className="d-flex gap-3 align-items-center">
           <Button
             type="primary"
-            onClick={start}
-            disabled={!hasSelected}
-            loading={loading}>
-            Reload
+            onClick={handleUnSelect}
+            disabled={!hasSelected}>
+            UnSelect
           </Button>
           <span>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}</span>
         </div>
 
         <div className="d-flex gap-3">
           <CategoryAddDrawer />
-          <CategoryEditDrawer />
+          <CategoryEditDrawer selectedLength={selectedLength} />
           <Button
+            onClick={handleDelete}
             className="d-flex align-items-center"
             type="primary"
             icon={<DeleteOutlined />}>
@@ -95,7 +103,7 @@ export default function CategoryViewTable() {
       <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={data}
+        dataSource={dataSource}
       />
     </div>
   );

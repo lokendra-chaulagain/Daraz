@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
 import { Button, Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from "antd";
-
 const { Option } = Select;
 
-export default function CategoryEditDrawer() {
+export default function CategoryEditDrawer({ selectedLength }: any) {
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -17,13 +16,24 @@ export default function CategoryEditDrawer() {
 
   return (
     <>
-      <Button
-        className="d-flex align-items-center"
-        type="primary"
-        onClick={showDrawer}
-        icon={<EditOutlined />}>
-        Edit Category
-      </Button>
+      {selectedLength === 1 ? (
+        <Button
+          className="d-flex align-items-center"
+          type="primary"
+          onClick={showDrawer}
+          icon={<EditOutlined />}>
+          Edit Category
+        </Button>
+      ) : (
+        <Button
+          className="d-flex align-items-center"
+          type="primary"
+          disabled
+          icon={<EditOutlined />}>
+          Edit Category
+        </Button>
+      )}
+
       <Drawer
         title="Create a new account"
         width={720}

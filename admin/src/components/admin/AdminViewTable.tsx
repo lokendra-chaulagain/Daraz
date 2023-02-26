@@ -74,7 +74,7 @@ export default function AdminViewTable() {
             onClick={start}
             disabled={!hasSelected}
             loading={loading}>
-            Reload
+            UnSelect
           </Button>
           <span>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}</span>
         </div>

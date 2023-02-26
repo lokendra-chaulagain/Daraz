@@ -11,6 +11,7 @@ import Login from "@/components/Login";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store/store";
 const { Content } = Layout;
+import { Toaster } from "react-hot-toast";
 
 export default function App({ Component, pageProps }: AppProps) {
   const {
@@ -26,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Topbar />
           <Content style={{ padding: "0 10px" }}>
             <CustomBreadCumb />
-            <Layout   style={{ padding: "24px 0", background: colorBgContainer, height: "100%" }}>
+            <Layout style={{ padding: "24px 0", background: colorBgContainer, height: "100%" }}>
               <Leftbar />
               <Content style={{ padding: "0 24px" }}>
                 <Component {...pageProps} />
@@ -38,6 +39,10 @@ export default function App({ Component, pageProps }: AppProps) {
       ) : (
         <Login />
       )}
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
     </Provider>
   );
 }

@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Col, Drawer, Form, Input, Row, Space } from "antd";
 import { useCreateBannerMutation } from "@/redux/api/globalApi";
+import toast from "react-hot-toast";
 
 export default function BannerAddDrawer() {
   const [createBanner] = useCreateBannerMutation();
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
+  const success = () => toast.success("Success");
+  const failure = () => toast.error("Failed");
 
   const showDrawer = () => {
     setOpen(true);
@@ -20,8 +23,10 @@ export default function BannerAddDrawer() {
     try {
       createBanner(values);
       form.resetFields();
+      success();
     } catch (error) {
       console.log(error);
+      failure();
     }
   };
 

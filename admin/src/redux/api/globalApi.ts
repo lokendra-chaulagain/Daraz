@@ -206,7 +206,7 @@ export const globalApi = createApi({
       invalidatesTags: ["Size"],
     }),
 
-    deleteSize: builder.mutation<Size, number>({
+    deleteSize: builder.mutation<Size, string>({
       query(id) {
         return {
           url: `/size/${id}`,
