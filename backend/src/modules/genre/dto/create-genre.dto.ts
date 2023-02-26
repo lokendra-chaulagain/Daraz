@@ -2,7 +2,7 @@ import { IsNotEmpty, MaxLength } from 'class-validator';
 
 export class CreateGenreDto {
   @IsNotEmpty()
-  @MaxLength(10)
+  @MaxLength(20)
   name: string;
 
   @IsNotEmpty()

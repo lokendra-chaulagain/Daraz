@@ -4,7 +4,7 @@ import { CreateGenreDto } from './create-genre.dto';
 
 export class UpdateGenreDto extends PartialType(CreateGenreDto) {
   @IsNotEmpty()
-  @MaxLength(10)
+  @MaxLength(20)
   name: string;
 
   @IsNotEmpty()

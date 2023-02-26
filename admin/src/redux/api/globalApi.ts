@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { SearchTag, Banner, Category } from "../type/type";
+import { SearchTag, Banner, Category, Size, Color, Genre } from "../type/type";
 
 export const globalApi = createApi({
   reducerPath: "globalApi",
@@ -7,7 +7,7 @@ export const globalApi = createApi({
     baseUrl: "http://localhost:4000/",
   }),
 
-  tagTypes: ["SearchTag", "Banner", "Category"],
+  tagTypes: ["SearchTag", "Banner", "Category", "Size", "Color", "Genre"],
   endpoints: (builder) => ({
     getAllSearchTag: builder.query<SearchTag[], void>({
       query() {
@@ -181,7 +181,165 @@ export const globalApi = createApi({
       },
       invalidatesTags: ["Category"],
     }),
+
+    //Size===============================================>
+    getAllSize: builder.query<Size[], void>({
+      query() {
+        return {
+          url: `/size`,
+          // credentials: "include",
+        };
+      },
+      providesTags: ["Size"],
+    }),
+
+    createSize: builder.mutation<Size, FormData>({
+      query(data) {
+        // console.log("success")
+        return {
+          url: "/size",
+          method: "POST",
+          // credentials: 'include',
+          body: data,
+        };
+      },
+      invalidatesTags: ["Size"],
+    }),
+
+    deleteSize: builder.mutation<Size, number>({
+      query(id) {
+        return {
+          url: `/size/${id}`,
+          method: "Delete",
+          // credentials: 'include',
+        };
+      },
+      invalidatesTags: ["Size"],
+    }),
+
+    //Color===============================================>
+    getAllColor: builder.query<Color[], void>({
+      query() {
+        return {
+          url: `/color`,
+          // credentials: "include",
+        };
+      },
+      providesTags: ["Color"],
+    }),
+
+    createColor: builder.mutation<Color, FormData>({
+      query(data) {
+        // console.log("success")
+        return {
+          url: "/color",
+          method: "POST",
+          // credentials: 'include',
+          body: data,
+        };
+      },
+      invalidatesTags: ["Color"],
+    }),
+
+    deleteColor: builder.mutation<Color, number>({
+      query(id) {
+        return {
+          url: `/color/${id}`,
+          method: "Delete",
+          // credentials: 'include',
+        };
+      },
+      invalidatesTags: ["Color"],
+    }),
+
+    //Genre===============================================>
+    getAllGenre: builder.query<Genre[], void>({
+      query() {
+        return {
+          url: `/genre`,
+          // credentials: "include",
+        };
+      },
+      providesTags: ["Color"],
+    }),
+
+    createGenre: builder.mutation<Genre, FormData>({
+      query(data) {
+        // console.log("success")
+        return {
+          url: "/genre",
+          method: "POST",
+          // credentials: 'include',
+          body: data,
+        };
+      },
+      invalidatesTags: ["Genre"],
+    }),
+
+    getSingleGenre: builder.query<Genre, string>({
+      query(id) {
+        return {
+          url: `/genre/${id}`,
+          // credentials: 'include',
+        };
+      },
+      providesTags: ["Genre"],
+    }),
+
+    updateGenre: builder.mutation<Genre, { id: string; updatedData: FormData }>({
+      query({ id, updatedData }) {
+        return {
+          url: `/genre/${id}`,
+          method: "PATCH",
+          // credentials: 'include',
+          body: updatedData,
+        };
+      },
+      invalidatesTags: ["Genre"],
+    }),
+
+    deleteGenre: builder.mutation<Genre, string>({
+      query(id) {
+        return {
+          url: `/genre/${id}`,
+          method: "Delete",
+          // credentials: 'include',
+        };
+      },
+      invalidatesTags: ["Genre"],
+    }),
   }),
 });
 
-export const { useGetAllSearchTagQuery, useCreateSearchTagMutation, useDeleteSearchTagMutation, useGetSingleSearchTagQuery, useUpdateSearchTagMutation, useCreateBannerMutation, useDeleteBannerMutation, useGetAllBannerQuery, useUpdateBannerMutation, useCreateCategoryMutation, useDeleteCategoryMutation, useGetAllCategoryQuery, useUpdateCategoryMutation, useGetSingleCategoryQuery } = globalApi;
+export const {
+  useGetAllSearchTagQuery,
+  useCreateSearchTagMutation,
+  useDeleteSearchTagMutation,
+  useGetSingleSearchTagQuery,
+  useUpdateSearchTagMutation,
+
+  useCreateBannerMutation,
+  useDeleteBannerMutation,
+  useGetAllBannerQuery,
+  useUpdateBannerMutation,
+
+  useCreateCategoryMutation,
+  useDeleteCategoryMutation,
+  useGetAllCategoryQuery,
+  useUpdateCategoryMutation,
+  useGetSingleCategoryQuery,
+
+  useCreateSizeMutation,
+  useDeleteSizeMutation,
+  useGetAllSizeQuery,
+
+  useCreateColorMutation,
+  useDeleteColorMutation,
+  useGetAllColorQuery,
+
+  useGetAllGenreQuery,
+  useCreateGenreMutation,
+  useDeleteGenreMutation,
+  useGetSingleGenreQuery,
+  useUpdateGenreMutation,
+} = globalApi;

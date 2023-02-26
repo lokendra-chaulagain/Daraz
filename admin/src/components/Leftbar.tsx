@@ -99,16 +99,20 @@ const items: MenuProps["items"] = [
             key: "inventory:1",
           },
           {
-            label: <Link href={"/logout"}>Category</Link>,
+            label: <Link href={"/genre"}>Genre</Link>,
             key: "inventory:2",
           },
           {
-            label: <Link href={"/logout"}>Color</Link>,
+            label: <Link href={"/category"}>Category</Link>,
             key: "inventory:3",
           },
           {
-            label: <Link href={"/logout"}>Size</Link>,
+            label: <Link href={"/color"}>Color</Link>,
             key: "inventory:4",
+          },
+          {
+            label: <Link href={"/size"}>Size</Link>,
+            key: "inventory:5",
           },
         ],
       },

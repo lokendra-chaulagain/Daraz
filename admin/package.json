@@ -19,6 +19,7 @@
     "bootstrap": "^5.2.3",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "moment": "^2.29.4",
     "next": "13.1.6",
     "rc-tween-one": "^3.0.6",
     "react": "18.2.0",
