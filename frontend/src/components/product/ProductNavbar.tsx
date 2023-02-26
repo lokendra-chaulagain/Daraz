@@ -4,6 +4,7 @@ import { MdOutlineArrowBackIos } from "react-icons/md";
 import { BsShare, BsCartDash } from "react-icons/bs";
 import { FiMoreHorizontal } from "react-icons/fi";
 
+
 export default function ProductNavbar() {
   return (
     <div className="shadow_0 d-flex align-items-center justify-content-between gap-2  pb-1 px-2 ">

@@ -14,13 +14,16 @@ p {
 html,
 body {
   padding: 0px;
-  margin: 0;
-  padding-top: 5px;
+  margin: 0px;
   background-color: var(--color-white) !important;
 }
 
 .color_white {
   color: var(--color-white) !important;
+}
+
+.bg_color_white {
+  background-color: var(--color-white) !important;
 }
 
 .color_orange {
@@ -35,6 +38,9 @@ body {
   color: var(--color-grey);
 }
 
+.outline_0 {
+  outline: 0px !important;
+}
 .shadow_0 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -49,4 +55,10 @@ body {
   border: 1px solid var(--color-orange) !important;
   padding: 1px 12px !important;
   border-radius: 4px !important;
+}
+
+.search_history_item {
+  background-color: whitesmoke;
+  padding: 2px 12px !important;
+
 }
