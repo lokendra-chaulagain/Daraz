@@ -1,19 +1,18 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Banner, BannerDocument } from './banner.schema';
-import { CreateBannerDto } from './dto/create-banner.dto';
-import { UpdateBannerDto } from './dto/update-banner.dto';
+import { Color, ColorDocument } from './color.schema';
+import { CreateColorDto } from './dto/create-color.dto';
 
 @Injectable()
-export class BannerService {
+export class ColorService {
   constructor(
-    @InjectModel(Banner.name) private bannerModel: Model<BannerDocument>,
+    @InjectModel(Color.name) private colorModel: Model<ColorDocument>,
   ) {}
 
-  async create(createBannerDto: CreateBannerDto) {
+  async create(createColorDto: CreateColorDto) {
     try {
-      const result = new this.bannerModel(createBannerDto);
+      const result = new this.colorModel(createColorDto);
       return await result.save();
     } catch (error) {
       throw new HttpException(
@@ -25,7 +24,7 @@ export class BannerService {
 
   async findAll() {
     try {
-      const results = await this.bannerModel.find();
+      const results = await this.colorModel.find();
       return results;
     } catch (error) {
       throw new HttpException(
@@ -37,24 +36,8 @@ export class BannerService {
 
   async findOne(id: string) {
     try {
-      const result = await this.bannerModel.findById(id);
+      const result = await this.colorModel.findById(id);
       return result;
-    } catch (error) {
-      throw new HttpException(
-        'Internal Server Error',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
-  async update(id: string, updateBannerDto: UpdateBannerDto) {
-    try {
-      const updatedResult = await this.bannerModel.findByIdAndUpdate(
-        id,
-        updateBannerDto,
-        { new: true },
-      );
-      return updatedResult;
     } catch (error) {
       throw new HttpException(
         'Internal Server Error',
@@ -65,7 +48,7 @@ export class BannerService {
 
   async remove(id: string) {
     try {
-      const result = await this.bannerModel.findByIdAndDelete(id);
+      const result = await this.colorModel.findByIdAndDelete(id);
       return result;
     } catch (error) {
       throw new HttpException(

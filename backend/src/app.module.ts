@@ -9,6 +9,9 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { SearchTagModule } from './modules/search-tag/search-tag.module';
 import { CommentModule } from './modules/comment/comment.module';
+import { ColorModule } from './modules/color/color.module';
+import { SizeModule } from './modules/size/size.module';
+import { GenreModule } from './modules/genre/genre.module';
 
 @Module({
   imports: [
@@ -22,6 +25,9 @@ import { CommentModule } from './modules/comment/comment.module';
     AuthModule,
     SearchTagModule,
     CommentModule,
+    ColorModule,
+    SizeModule,
+    GenreModule,
   ],
   controllers: [AppController],
   providers: [AppService],
