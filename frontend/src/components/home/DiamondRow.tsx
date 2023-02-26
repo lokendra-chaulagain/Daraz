@@ -9,7 +9,7 @@ import best from "../../../assets/diamond/best.png";
 
 export default function DiamondRow() {
   return (
-    <div className="d-flex align-items-center justify-content-between">
+    <div className="d-flex align-items-center justify-content-between mt-5">
       <div>
         <div className={`${styles.diamond_image_div}`}>
           <Image
