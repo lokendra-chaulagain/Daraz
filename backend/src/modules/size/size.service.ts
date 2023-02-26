@@ -1,19 +1,16 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Banner, BannerDocument } from './banner.schema';
-import { CreateBannerDto } from './dto/create-banner.dto';
-import { UpdateBannerDto } from './dto/update-banner.dto';
+import { CreateSizeDto } from './dto/create-size.dto';
+import { Size, SizeDocument } from './size.schema';
 
 @Injectable()
-export class BannerService {
-  constructor(
-    @InjectModel(Banner.name) private bannerModel: Model<BannerDocument>,
-  ) {}
+export class SizeService {
+  constructor(@InjectModel(Size.name) private sizeModel: Model<SizeDocument>) {}
 
-  async create(createBannerDto: CreateBannerDto) {
+  async create(createSizeDto: CreateSizeDto) {
     try {
-      const result = new this.bannerModel(createBannerDto);
+      const result = new this.sizeModel(createSizeDto);
       return await result.save();
     } catch (error) {
       throw new HttpException(
@@ -25,7 +22,7 @@ export class BannerService {
 
   async findAll() {
     try {
-      const results = await this.bannerModel.find();
+      const results = await this.sizeModel.find();
       return results;
     } catch (error) {
       throw new HttpException(
@@ -37,24 +34,8 @@ export class BannerService {
 
   async findOne(id: string) {
     try {
-      const result = await this.bannerModel.findById(id);
+      const result = await this.sizeModel.findById(id);
       return result;
-    } catch (error) {
-      throw new HttpException(
-        'Internal Server Error',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
-  async update(id: string, updateBannerDto: UpdateBannerDto) {
-    try {
-      const updatedResult = await this.bannerModel.findByIdAndUpdate(
-        id,
-        updateBannerDto,
-        { new: true },
-      );
-      return updatedResult;
     } catch (error) {
       throw new HttpException(
         'Internal Server Error',
@@ -65,7 +46,7 @@ export class BannerService {
 
   async remove(id: string) {
     try {
-      const result = await this.bannerModel.findByIdAndDelete(id);
+      const result = await this.sizeModel.findByIdAndDelete(id);
       return result;
     } catch (error) {
       throw new HttpException(

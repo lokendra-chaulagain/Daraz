@@ -1,19 +1,19 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Banner, BannerDocument } from './banner.schema';
-import { CreateBannerDto } from './dto/create-banner.dto';
-import { UpdateBannerDto } from './dto/update-banner.dto';
+import { CreateGenreDto } from './dto/create-genre.dto';
+import { UpdateGenreDto } from './dto/update-genre.dto';
+import { Genre, GenreDocument } from './genre.schema';
 
 @Injectable()
-export class BannerService {
+export class GenreService {
   constructor(
-    @InjectModel(Banner.name) private bannerModel: Model<BannerDocument>,
+    @InjectModel(Genre.name) private genreModel: Model<GenreDocument>,
   ) {}
 
-  async create(createBannerDto: CreateBannerDto) {
+  async create(createGenreDto: CreateGenreDto) {
     try {
-      const result = new this.bannerModel(createBannerDto);
+      const result = new this.genreModel(createGenreDto);
       return await result.save();
     } catch (error) {
       throw new HttpException(
@@ -25,7 +25,7 @@ export class BannerService {
 
   async findAll() {
     try {
-      const results = await this.bannerModel.find();
+      const results = await this.genreModel.find();
       return results;
     } catch (error) {
       throw new HttpException(
@@ -37,7 +37,7 @@ export class BannerService {
 
   async findOne(id: string) {
     try {
-      const result = await this.bannerModel.findById(id);
+      const result = await this.genreModel.findById(id);
       return result;
     } catch (error) {
       throw new HttpException(
@@ -47,11 +47,11 @@ export class BannerService {
     }
   }
 
-  async update(id: string, updateBannerDto: UpdateBannerDto) {
+  async update(id: string, updateGenreDto: UpdateGenreDto) {
     try {
-      const updatedResult = await this.bannerModel.findByIdAndUpdate(
+      const updatedResult = await this.genreModel.findByIdAndUpdate(
         id,
-        updateBannerDto,
+        updateGenreDto,
         { new: true },
       );
       return updatedResult;
@@ -65,7 +65,7 @@ export class BannerService {
 
   async remove(id: string) {
     try {
-      const result = await this.bannerModel.findByIdAndDelete(id);
+      const result = await this.genreModel.findByIdAndDelete(id);
       return result;
     } catch (error) {
       throw new HttpException(
