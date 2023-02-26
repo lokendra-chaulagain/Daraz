@@ -83,7 +83,7 @@ export default function UserViewTable() {
             onClick={start}
             disabled={!hasSelected}
             loading={loading}>
-            Reload
+            UnSelect
           </Button>
           <span>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}</span>
         </div>

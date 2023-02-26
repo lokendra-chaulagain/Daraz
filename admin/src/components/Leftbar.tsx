@@ -21,11 +21,23 @@ const items: MenuProps["items"] = [
         type: "group",
         children: [
           {
-            label: <Link href={"/admin"}>Admin</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/admin"}>
+                Admin
+              </Link>
+            ),
             key: "admin:1",
           },
           {
-            label: <Link href={"/admin-settings"}>Admin Settings</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/admin-settings"}>
+                Admin Settings
+              </Link>
+            ),
             key: "admin:2",
           },
         ],
@@ -41,11 +53,23 @@ const items: MenuProps["items"] = [
         type: "group",
         children: [
           {
-            label: <Link href={"/user"}>User</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/user"}>
+                User
+              </Link>
+            ),
             key: "user:1",
           },
           {
-            label: <Link href={"/user-settings"}>User Settings</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/user-settings"}>
+                User Settings
+              </Link>
+            ),
             key: "user:2",
           },
         ],
@@ -62,11 +86,23 @@ const items: MenuProps["items"] = [
         type: "group",
         children: [
           {
-            label: <Link href={"/mail"}>Mail</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/mail"}>
+                Mail
+              </Link>
+            ),
             key: "mail:1",
           },
           {
-            label: <Link href={"/subscriber"}>Subscriber</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/subscriber"}>
+                Subscriber
+              </Link>
+            ),
             key: "mail:2",
           },
         ],
@@ -75,13 +111,25 @@ const items: MenuProps["items"] = [
   },
 
   {
-    label: <Link href={"/search-tag"}>Search Tag</Link>,
+    label: (
+      <Link
+        className="no_underline"
+        href={"/search-tag"}>
+        Search Tag
+      </Link>
+    ),
     key: "search-tag",
     icon: <AiOutlineTags />,
   },
 
   {
-    label: <Link href={"/banner"}>Banner</Link>,
+    label: (
+      <Link
+        className="no_underline"
+        href={"/banner"}>
+        Banner
+      </Link>
+    ),
     key: "banner",
     icon: <GiVerticalBanner />,
   },
@@ -95,23 +143,53 @@ const items: MenuProps["items"] = [
         type: "group",
         children: [
           {
-            label: <Link href={"/product"}>Product</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/product"}>
+                Product
+              </Link>
+            ),
             key: "inventory:1",
           },
           {
-            label: <Link href={"/genre"}>Genre</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/genre"}>
+                Genre
+              </Link>
+            ),
             key: "inventory:2",
           },
           {
-            label: <Link href={"/category"}>Category</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/category"}>
+                Category
+              </Link>
+            ),
             key: "inventory:3",
           },
           {
-            label: <Link href={"/color"}>Color</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/color"}>
+                Color
+              </Link>
+            ),
             key: "inventory:4",
           },
           {
-            label: <Link href={"/size"}>Size</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/size"}>
+                Size
+              </Link>
+            ),
             key: "inventory:5",
           },
         ],
@@ -127,11 +205,23 @@ const items: MenuProps["items"] = [
         type: "group",
         children: [
           {
-            label: <Link href={"/general-settings"}>General-Settings</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/general-settings"}>
+                General-Settings
+              </Link>
+            ),
             key: "setting:1",
           },
           {
-            label: <Link href={"/logout"}>Logout</Link>,
+            label: (
+              <Link
+                className="no_underline"
+                href={"/logout"}>
+                Logout
+              </Link>
+            ),
             key: "setting:2",
           },
         ],
@@ -157,6 +247,7 @@ export default function Leftbar() {
         style={{ background: colorBgContainer }}
         width={200}>
         <Menu
+          className="no_selection no_underline"
           mode="inline"
           defaultSelectedKeys={["admin"]}
           // defaultOpenKeys={["admin:1"]}

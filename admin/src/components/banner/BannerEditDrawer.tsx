@@ -4,7 +4,7 @@ import { Button, Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from
 
 const { Option } = Select;
 
-export default function BannerEditDrawer() {
+export default function BannerEditDrawer({ selectedLength }: any) {
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -17,13 +17,24 @@ export default function BannerEditDrawer() {
 
   return (
     <>
-      <Button
-        className="d-flex align-items-center"
-        type="primary"
-        onClick={showDrawer}
-        icon={<EditOutlined />}>
-        Edit Banner
-      </Button>
+      {selectedLength === 1 ? (
+        <Button
+          className="d-flex align-items-center"
+          type="primary"
+          onClick={showDrawer}
+          icon={<EditOutlined />}>
+          Edit Banner
+        </Button>
+      ) : (
+        <Button
+          className="d-flex align-items-center"
+          type="primary"
+          disabled
+          icon={<EditOutlined />}>
+          Edit Banner
+        </Button>
+      )}
+
       <Drawer
         title="Create a new account"
         width={720}

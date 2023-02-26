@@ -5,6 +5,7 @@ import { useDeleteGenreMutation, useGetAllGenreQuery } from "@/redux/api/globalA
 import GenreAddDrawer from "./GenreAddDrawer";
 import GenreEditDrawer from "./GenreEditDrawer";
 import moment from "moment";
+import toast from "react-hot-toast";
 
 const columns = [
   {
@@ -31,10 +32,9 @@ const columns = [
 export default function GenreViewTable() {
   const { data: genres } = useGetAllGenreQuery();
   const [deleteGenre] = useDeleteGenreMutation();
-  console.log(genres);
-
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const success = () => toast.success("Success");
+  const failure = () => toast.error("Failed");
 
   const dataSource =
     genres &&
@@ -47,12 +47,10 @@ export default function GenreViewTable() {
     }));
 
   const handleUnSelect = () => {
-    setLoading(true);
     setSelectedRowKeys([]);
-    setLoading(false);
   };
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+  const onSelectChange = (newSelectedRowKeys: any) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
@@ -63,15 +61,17 @@ export default function GenreViewTable() {
   };
   const hasSelected = selectedRowKeys.length > 0;
   const selectedLength = selectedRowKeys.length;
-  console.log(selectedRowKeys[0]);
 
   const id: any = selectedRowKeys[0];
-  console.log(typeof id);
   const handleDelete = () => {
     try {
-      deleteGenre(id);
+      for (const id of selectedRowKeys) {
+        deleteGenre(id);
+        success();
+      }
     } catch (error) {
       console.log(error);
+      failure();
     }
   };
 
@@ -82,8 +82,7 @@ export default function GenreViewTable() {
           <Button
             type="primary"
             onClick={handleUnSelect}
-            disabled={!hasSelected}
-            loading={loading}>
+            disabled={!hasSelected}>
             Unselect
           </Button>
           <span>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}</span>

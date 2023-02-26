@@ -1,27 +1,16 @@
 import React, { useState } from "react";
 import { Button, Table } from "antd";
-import type { ColumnsType } from "antd/es/table";
 import BannerAddDrawer from "./BannerAddDrawer";
 import BannerEditDrawer from "./BannerEditDrawer";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useGetAllBannerQuery } from "@/redux/api/globalApi";
+import { useDeleteBannerMutation, useGetAllBannerQuery } from "@/redux/api/globalApi";
+import moment from "moment";
+import toast from "react-hot-toast";
 
-interface DataType {
-  key: React.Key;
-  username: string;
-  name: string;
-  createdAt: string;
-}
-
-const columns: ColumnsType<DataType> = [
+const columns = [
   {
     title: "Image",
-    dataIndex: "name",
-  },
-
-  {
-    title: "Added By",
-    dataIndex: "username",
+    dataIndex: "image",
   },
 
   {
@@ -30,32 +19,26 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const data: DataType[] = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    username: "loki",
-    createdAt: "2020/3/3",
-  });
-}
-
 export default function BannerViewTable() {
   const { data: banners } = useGetAllBannerQuery();
-  console.log(banners);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [deleteBanner] = useDeleteBannerMutation();
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const success = () => toast.success("Success");
+  const failure = () => toast.error("Failed");
 
-  const start = () => {
-    setLoading(true);
-    // ajax request after empty completing
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
+  const dataSource =
+    banners &&
+    banners.map((banner, index) => ({
+      key: banner._id,
+      image: banner.image,
+      createdAt: moment(banner.createdAt).format("YYYY-MM-DD"),
+    }));
+
+  const handleUnSelect = () => {
+    setSelectedRowKeys([]);
   };
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+  const onSelectChange = (newSelectedRowKeys: any) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
@@ -65,6 +48,20 @@ export default function BannerViewTable() {
     onChange: onSelectChange,
   };
   const hasSelected = selectedRowKeys.length > 0;
+  const selectedLength = selectedRowKeys.length;
+
+  const handleDelete = () => {
+    try {
+      for (const id of selectedRowKeys) {
+        deleteBanner(id);
+        success();
+        setSelectedRowKeys([]);
+      }
+    } catch (error) {
+      console.log(error);
+      failure();
+    }
+  };
 
   return (
     <div>
@@ -72,19 +69,20 @@ export default function BannerViewTable() {
         <div className="d-flex gap-3 align-items-center">
           <Button
             type="primary"
-            onClick={start}
-            disabled={!hasSelected}
-            loading={loading}>
-            Reload
+            onClick={handleUnSelect}
+            disabled={!hasSelected}>
+            UnSelect
           </Button>
           <span>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}</span>
         </div>
 
         <div className="d-flex gap-3">
           <BannerAddDrawer />
-          <BannerEditDrawer />
+          <BannerEditDrawer selectedLength={selectedLength} />
 
           <Button
+            onClick={handleDelete}
+            disabled={!hasSelected}
             className="d-flex align-items-center"
             type="primary"
             icon={<DeleteOutlined />}>
@@ -95,7 +93,7 @@ export default function BannerViewTable() {
       <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={data}
+        dataSource={dataSource}
       />
     </div>
   );

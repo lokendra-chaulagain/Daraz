@@ -1,26 +1,15 @@
 import React, { useState } from "react";
 import { Button, Table } from "antd";
-import type { ColumnsType } from "antd/es/table";
 import { DeleteOutlined } from "@ant-design/icons";
 import SearchTagAddDrawer from "./SearchTagAddDrawer";
-import { useGetAllSearchTagQuery } from "@/redux/api/globalApi";
+import { useDeleteSearchTagMutation, useGetAllSearchTagQuery } from "@/redux/api/globalApi";
+import moment from "moment";
+import toast from "react-hot-toast";
 
-interface DataType {
-  key: React.Key;
-  name: string;
-  addedBy: string;
-  createdAt: string;
-}
-
-const columns: ColumnsType<DataType> = [
+const columns = [
   {
     title: "Tag",
     dataIndex: "name",
-  },
-
-  {
-    title: "Added By",
-    dataIndex: "addedBy",
   },
 
   {
@@ -31,31 +20,25 @@ const columns: ColumnsType<DataType> = [
 
 export default function SearchTagViewTable() {
   const { data: tags } = useGetAllSearchTagQuery();
-  console.log(tags);
+  const [deleteTag] = useDeleteSearchTagMutation();
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
-  const data: DataType[] = [];
-  for (let i = 0; i < 46; i++) {
-    data.push({
-      key: i,
-      name: `Edward King ${i}`,
-      addedBy: "loki",
-      createdAt: "2020/3/3",
-    });
-  }
+  const success = () => toast.success("Success");
+  const failure = () => toast.error("Failed");
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
+  const dataSource =
+    tags &&
+    tags.map((tag, index) => ({
+      key: tag._id,
+      name: tag.name,
+      createdAt: moment(tag.createdAt).format("YYYY-MM-DD"),
+    }));
 
-  const start = () => {
-    setLoading(true);
-    // ajax request after empty completing
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
+  const handleUnSelect = () => {
+    setSelectedRowKeys([]);
   };
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+  const onSelectChange = (newSelectedRowKeys: any) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
@@ -66,16 +49,28 @@ export default function SearchTagViewTable() {
   };
   const hasSelected = selectedRowKeys.length > 0;
 
+  const handleDelete = () => {
+    try {
+      for (const id of selectedRowKeys) {
+        deleteTag(id);
+        success();
+        setSelectedRowKeys([]);
+      }
+    } catch (error) {
+      console.log(error);
+      failure();
+    }
+  };
+
   return (
     <div>
       <div className="d-flex align-items-center justify-content-between">
         <div className="d-flex gap-3 align-items-center">
           <Button
             type="primary"
-            onClick={start}
-            disabled={!hasSelected}
-            loading={loading}>
-            Reload
+            onClick={handleUnSelect}
+            disabled={!hasSelected}>
+            Unselect
           </Button>
           <span>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}</span>
         </div>
@@ -84,6 +79,8 @@ export default function SearchTagViewTable() {
           <SearchTagAddDrawer />
 
           <Button
+            onClick={handleDelete}
+            disabled={!hasSelected}
             className="d-flex align-items-center"
             type="primary"
             icon={<DeleteOutlined />}>
@@ -94,7 +91,7 @@ export default function SearchTagViewTable() {
       <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={data}
+        dataSource={dataSource}
       />
     </div>
   );

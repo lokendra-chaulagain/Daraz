@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Col, Drawer, Form, Input, Row, Space } from "antd";
 import { useCreateCategoryMutation } from "@/redux/api/globalApi";
+import toast from "react-hot-toast";
 
 export default function CategoryAddDrawer() {
   const [createCategory] = useCreateCategoryMutation();
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
+
+  const success = () => toast.success("Success");
+  const failure = () => toast.error("failure");
 
   const showDrawer = () => {
     setOpen(true);
@@ -20,8 +24,10 @@ export default function CategoryAddDrawer() {
     try {
       createCategory(values);
       form.resetFields();
+      success();
     } catch (error) {
       console.log(error);
+      failure();
     }
   };
 
