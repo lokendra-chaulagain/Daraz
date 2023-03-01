@@ -16,9 +16,9 @@ export default function HomeHeader() {
   return (
     <div className="shadow_0  d-flex align-items-center justify-content-between gap-2  px-2 pt-3 pb-1 ">
       <Link href={"/scan"}>
-        <div className="d-flex scan_icon_div flex-column">
+        <div className="d-flex   flex-column">
           <AiOutlineScan size={20} />
-          <p className="font_small">Scan</p>
+          <p className="font_small ">Scan</p>
         </div>
       </Link>
       <Link

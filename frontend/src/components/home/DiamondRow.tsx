@@ -6,70 +6,81 @@ import beauty from "../../../assets/diamond/beauty.png";
 import recharge from "../../../assets/diamond/recharge.png";
 import nepali from "../../../assets/diamond/nepali.png";
 import best from "../../../assets/diamond/best.png";
+import Link from "next/link";
 
 export default function DiamondRow() {
   return (
-    <div className="d-flex align-items-center justify-content-between mt-5">
-      <div>
-        <div className={`${styles.diamond_image_div}`}>
-          <Image
-            src={fashion}
-            fill
-            alt="img"
-          />
+    <div className="d-flex align-items-center justify-content-between mt-5 px-2 ">
+      <Link href={"/fashion"}>
+        <div>
+          <div className={`${styles.diamond_image_div}`}>
+            <Image
+              src={fashion}
+              fill
+              alt="img"
+            />
+          </div>
+          <p className="fz11 text-center fw-medium ">Fashion</p>
         </div>
-        <p className="font_small text-center">Fashion</p>
-      </div>
+      </Link>
 
-      <div>
-        <div className={`${styles.diamond_image_div}`}>
-          <Image
-            src={beauty}
-            fill
-            alt="img"
-          />
+      <Link href={"/beauty"}>
+        <div>
+          <div className={`${styles.diamond_image_div}`}>
+            <Image
+              src={beauty}
+              fill
+              alt="img"
+            />
+          </div>
+          <p className="fz11 text-center fw-medium">Beauty</p>
         </div>
-        <p className="font_small text-center">Beauty</p>
-      </div>
+      </Link>
 
-      <div>
-        <div className={`${styles.diamond_image_div}`}>
-          <Image
-            src={recharge}
-            fill
-            alt="img"
-          />
+      <Link href={"/recharge"}>
+        <div>
+          <div className={`${styles.diamond_image_div}`}>
+            <Image
+              src={recharge}
+              fill
+              alt="img"
+            />
+          </div>
+          <p className="fz11 text-center fw-medium">
+            Recharge <br /> & Payments
+          </p>
         </div>
-        <p className="font_small text-center">
-          Recharge <br /> & Payments
-        </p>
-      </div>
+      </Link>
 
-      <div>
-        <div className={`${styles.diamond_image_div}`}>
-          <Image
-            src={nepali}
-            fill
-            alt="img"
-          />
+      <Link href={"/proudly-nepali"}>
+        <div>
+          <div className={`${styles.diamond_image_div}`}>
+            <Image
+              src={nepali}
+              fill
+              alt="img"
+            />
+          </div>
+          <p className="fz11 text-center fw-medium">
+            Proudly <br /> Nepali
+          </p>
         </div>
-        <p className="font_small text-center">
-          Proudly <br /> Nepali
-        </p>
-      </div>
+      </Link>
 
-      <div >
-        <div className={`${styles.diamond_image_div}`}>
-          <Image
-            src={best}
-            fill
-            alt="img"
-          />
+      <Link href={"/top-brands"}>
+        <div>
+          <div className={`${styles.diamond_image_div}`}>
+            <Image
+              src={best}
+              fill
+              alt="img"
+            />
+          </div>
+          <p className="fz11 text-center fw-medium">
+            Top <br /> Brands
+          </p>
         </div>
-        <p className="font_small text-center">
-          Top <br /> Brands
-        </p>
-      </div>
+      </Link>
     </div>
   );
 }

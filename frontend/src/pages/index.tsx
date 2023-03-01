@@ -11,6 +11,7 @@ import { MdOutlineClear, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { ImLocation } from "react-icons/im";
 import { Timeline } from "antd";
 import { BsDot } from "react-icons/bs";
+import HappyHour from "../components/home/HappyHour";
 
 export default function Home() {
   const [locationBarClicked, setLocationBarClicked] = useState(false);
@@ -53,6 +54,7 @@ export default function Home() {
         </div>
 
         <DiamondRow />
+        <HappyHour />
         <CategoriesCarousel />
         <FlashSale />
         <ScrollProductSection />
