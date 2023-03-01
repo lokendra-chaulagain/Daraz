@@ -7,8 +7,8 @@ export default function SearchHistory() {
   };
 
   return (
-    <div>
-      <div className="d-flex align-items-center justify-content-between my-3">
+    <div className="px-3">
+      <div className="d-flex align-items-center justify-content-between mt-3 ">
         <h6>Search History</h6>
         <RiDeleteBinLine
           size={20}

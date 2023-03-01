@@ -9,10 +9,10 @@ export default function HomeCarouselBottomSearch() {
           className="color_orange"
           size={18}
         />
-        <p className=""> | </p>
+        <p className="ms-2"> | </p>
         <input
           type="email"
-          className="border-0 ps-3 "
+          className="border-0 ps-3 outline_0 fz14 "
           placeholder="Set your delivery location"
         />
       </div>

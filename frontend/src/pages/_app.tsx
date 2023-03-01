@@ -23,23 +23,12 @@ export default function App({ Component, pageProps }: AppProps) {
       <div
         className="d-flex flex-column  justify-content-between overflow-y-hidden"
         style={{ height: "100vh" }}>
-        <HomeHeader />
+        {/* {currentRoute === "scan" ? "" : currentRoute === "search" ? "" : <HomeHeader />} */}
         <div className="overflow-scroll">
           <Component {...pageProps} />
         </div>
-        <Footer />
+        {/* {currentRoute === "scan" ? "" : currentRoute === "search" ? "" : <Footer />} */}
       </div>
     </Provider>
   );
 }
-
-// return (
-//   <Provider store={store}>
-//     <div className="d-flex flex-column h-100 justify-content-between ">
-//       {currentRoute !== "login" && !slug && <HomeHeader />}
-//       <Component {...pageProps} />
-//       {currentRoute !== "login" && <Footer />}
-//     </div>
-//   </Provider>
-// );
-// }

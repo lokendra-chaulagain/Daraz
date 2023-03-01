@@ -65,6 +65,10 @@ a {
   padding: 2px 12px !important;
 }
 
+.scan_icon_div {
+  color: rgb(56, 56, 56);
+}
+
 /* .fz11 {
   font-size: 11px;
 }
@@ -98,6 +102,18 @@ a {
   font-size: 12px;
 }
 
+.fz13 {
+  font-size: 13px;
+}
+
+.fz14 {
+  font-size: 14px;
+}
+
+.fz15 {
+  font-size: 15px;
+}
+
 .fz16 {
   font-size: 16px;
 }
@@ -124,4 +140,11 @@ a {
 
 .search_bg_color {
   background-color: #dadadd8f !important;
+}
+.border_top {
+  border-top: 1px solid rgb(230, 228, 228);
+}
+
+.border_bottom {
+  border-bottom: 1px solid rgb(230, 228, 228) !important;
 }
