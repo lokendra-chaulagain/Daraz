@@ -4,11 +4,12 @@ import FlashSale from "../components/home/FlashSale";
 import HomeCarouselBottomSearch from "../components/home/HomeCarouselBottomSearch";
 import HomeHeader from "../components/home/HomeHeader";
 import HomeHeroCarousel from "../components/home/HomeHeroCarousel";
+import ScrollProductSection from "../components/home/ScrollProductSection";
 
 export default function Home() {
   return (
     <div className="">
-      <HomeHeader />
+      {/* <HomeHeader /> */}
       <div className="position-relative">
         <HomeHeroCarousel />
         <div
@@ -20,7 +21,17 @@ export default function Home() {
 
       <DiamondRow />
       <CategoriesCarousel />
+      <CategoriesCarousel />
+      <CategoriesCarousel />
+      <CategoriesCarousel />
+      <CategoriesCarousel />
+      <CategoriesCarousel />
+      <CategoriesCarousel />
+      <CategoriesCarousel />
+      <CategoriesCarousel />
+      <CategoriesCarousel />
       <FlashSale />
+      <ScrollProductSection/>
     </div>
   );
 }

@@ -20,11 +20,26 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      <div className="d-flex flex-column h-100 ">
-        {/* {currentRoute !== "login" && !slug && <HomeHeader />} */}
-        <Component {...pageProps} />
-        {currentRoute !== "login" && <Footer />}
+      <div
+        className="d-flex flex-column  justify-content-between overflow-y-hidden"
+        style={{ height: "100vh" }}>
+        <HomeHeader />
+        <div className="overflow-scroll">
+          <Component {...pageProps} />
+        </div>
+        <Footer />
       </div>
     </Provider>
   );
 }
+
+// return (
+//   <Provider store={store}>
+//     <div className="d-flex flex-column h-100 justify-content-between ">
+//       {currentRoute !== "login" && !slug && <HomeHeader />}
+//       <Component {...pageProps} />
+//       {currentRoute !== "login" && <Footer />}
+//     </div>
+//   </Provider>
+// );
+// }

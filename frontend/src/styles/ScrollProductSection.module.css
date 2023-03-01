@@ -1,0 +1,23 @@
+.icon_text {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.product_section {
+  background-color: #eef1f5e7 !important;
+}
+
+.product_name {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.voucher {
+  font-size: 10px;
+  border: 2px dotted var(--color-orange);
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-orange);
+}
