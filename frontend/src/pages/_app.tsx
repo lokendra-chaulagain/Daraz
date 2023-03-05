@@ -11,9 +11,9 @@ import { store } from "../redux/store/store";
 import ProductNavbar from "../components/product/ProductNavbar";
 
 export default function App({ Component, pageProps }: AppProps) {
-  // useEffect(() => {
-  //   import("bootstrap");
-  // }, []);
+  useEffect(() => {
+    import("bootstrap");
+  }, []);
   const router = useRouter();
   const currentRoute = router.pathname.split("/")[1];
   const slug = router.query.slug;
