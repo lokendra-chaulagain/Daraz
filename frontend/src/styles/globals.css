@@ -71,6 +71,10 @@ a {
   padding: 2px 12px !important;
 }
 
+.fz10 {
+  font-size: 10px;
+}
+
 .fz11 {
   font-size: 11px;
 }
@@ -132,6 +136,12 @@ a {
 
 .border_bottom {
   border-bottom: 1px solid rgb(230, 228, 228) !important;
+}
+
+
+
+.bg_blue_grey{
+  background-color: #eef1f5e7;
 }
 
 

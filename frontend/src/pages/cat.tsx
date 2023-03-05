@@ -34,30 +34,31 @@ export default function Cat() {
   const datas = [{ name: "All" }, { name: "Mall" }, { name: "Fashion" }, { name: "Beauty" }, { name: "Electronic" }, { name: "Mobiles" }, { name: "Televisions" }, { name: "All" }, { name: "All" }, { name: "All" }];
 
   return (
-    <div className="position-relative overflow-scroll z-3" style={{height:"100vh"}}>
+    <div
+      className="position-relative overflow-scroll z-3"
+      style={{ height: "100vh" }}>
       {/* Navbar */}
       <div className="position-fixed top-0 w-100">
+        <div className="  d-flex align-items-center justify-content-between gap-2  px-2 py-1 ">
+          <Link href={"/"}>
+            <MdOutlineArrowBackIos size={23} />
+          </Link>
 
-      <div className="  d-flex align-items-center justify-content-between gap-2  px-2 py-1 ">
-        <Link href={"/"}>
-          <MdOutlineArrowBackIos size={23} />
-        </Link>
-
-        <div
-          className="form-control py-1  rounded-pill "
-          style={{ border: "1px solid #fd5403" }}>
-          <AiOutlineSearch size={24} />
-          <input
-            type="text"
-            className="border-0 outline_0 bg_color_white"
-            style={{ caretColor: "#fd5403" }}
-            placeholder={currentTag ? currentTag : "iphone 11 cover"}
-          />
+          <div
+            className="form-control py-1  rounded-pill "
+            style={{ border: "1px solid #fd5403" }}>
+            <AiOutlineSearch size={24} />
+            <input
+              type="text"
+              className="border-0 outline_0 bg_color_white"
+              style={{ caretColor: "#fd5403" }}
+              placeholder={currentTag ? currentTag : "iphone 11 cover"}
+            />
+          </div>
+          <FiShoppingCart size={28} />
         </div>
-        <FiShoppingCart size={28} />
-      </div>
 
-      {/* <div className="d-flex align-items-center justify-content-between mt-5 px-2 ">
+        {/* <div className="d-flex align-items-center justify-content-between mt-5 px-2 ">
         <Link href={"/fashion"}>
           <div>
             <div className={`${styles.diamond_image_div}`}>
@@ -111,11 +112,10 @@ export default function Cat() {
         </Link>
       </div> */}
 
-      <p>Diamond</p>
+        <p>Diamond</p>
 
-      <ProductFilterSection />
+        <ProductFilterSection />
       </div>
-
 
       {/* <ProductFilterSection2 /> */}
       <div className={`${styles.product_section} py-2 px-2 mt-5`}>
