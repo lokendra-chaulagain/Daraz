@@ -1,5 +1,5 @@
 import Footer from "../components/Footer";
-import ScrollProductSection from "../components/home/ScrollProductSection";
+import ScrollProductSection from "../components/home/IndexCategorySelect";
 import FashionNavbar from "../components/fashion/FashionNavbar";
 import FashionBanner from "../components/fashion/FashionBanner";
 import FashionHorizontalCircleCarousel from "../components/fashion/FashionHorizontalCircleCarousel";

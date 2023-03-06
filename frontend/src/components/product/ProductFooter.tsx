@@ -6,7 +6,7 @@ import styles from "../../styles/Product.module.css";
 export default function ProductFooter() {
   return (
     <div
-      className="d-flex align-items-center justify-content-between"
+      className="d-flex align-items-center justify-content-between "
       style={{ height: "5vh" }}>
       <MdStore
         className="color_orange cursor_pointer"
