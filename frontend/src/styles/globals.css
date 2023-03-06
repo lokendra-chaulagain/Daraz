@@ -154,6 +154,21 @@ a {
   background-color: #eeaa8a48 !important;
 }
 
+.bg_purple{
+  background-color: #4E31AA !important;
+}
+
+.bg_purple_shadow{
+  background-color: #4d31aa31 !important;
+}
+.color_purple{
+  color: #4E31AA !important;
+}
+
+.color_purple_dark{
+  color: #3A1078 !important;
+}
+
 
 
 
