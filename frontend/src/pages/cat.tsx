@@ -20,7 +20,7 @@ import product from "../../assets/product/1.jpg";
 import { AiFillStar } from "react-icons/ai";
 
 import ProductFilterSection2 from "../components/ProductFilterSection2";
-import ScrollProductSection from "../components/home/ScrollProductSection";
+import ScrollProductSection from "../components/home/IndexCategorySelect";
 
 export default function Cat() {
   const { data: tags } = useGetAllSearchTagQuery();

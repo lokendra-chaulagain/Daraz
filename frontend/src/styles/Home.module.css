@@ -19,6 +19,7 @@
   align-items: center;
   justify-content: center;
   width: 33%;
+  border: 1px solid #cad2ddb9;
 }
 
 .flash_sale_img_div {
@@ -39,3 +40,32 @@
 }
 
 
+
+.save_on_daraz_img_div {
+  position: relative;
+  height: 90px;
+  width: 80%;
+}
+
+
+
+.save_on_daraz_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+}
+
+
+
+.fire_emoji {
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* background-color: var(--color-orange); */
+  color: var(--color-orange);
+  font-size: 10px;
+  padding: 1px 3px;
+  font-weight: 600;
+}
