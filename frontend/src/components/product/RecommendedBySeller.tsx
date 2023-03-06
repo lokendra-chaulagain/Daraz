@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,8 +9,8 @@ import styles from "../../styles/Product.module.css";
 
 export default function RecommendedBySeller() {
   return (
-    <div>
-      <p>Recommended by Seller</p>
+    <div className="pb-3">
+      <p className="fz15 fw-semibold text-muted">Recommended by Seller</p>
 
       <Swiper
         pagination={{
@@ -18,9 +18,9 @@ export default function RecommendedBySeller() {
         }}
         slidesPerView={3}
         slidesPerGroup={3}
-        spaceBetween={10}
+        spaceBetween={7}
         modules={[Pagination]}
-        className="mySwiper">
+        className="mySwiper mt-2">
         <SwiperSlide>
           <div className={`${styles.recommended_img_div}`}>
             <Image

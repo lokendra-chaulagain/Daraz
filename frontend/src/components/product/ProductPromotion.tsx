@@ -2,9 +2,10 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { MdOutlineKeyboardArrowRight, MdRedeem } from "react-icons/md";
 import Image from "next/image";
 import logo from "../../../assets/1/logo-icon.png";
+import { SiRubygems } from "react-icons/si";
 
 export default function ProductPromotion() {
   return (
@@ -106,9 +107,38 @@ export default function ProductPromotion() {
         </SwiperSlide>
 
         <SwiperSlide>
-          <p className="fz12">More</p>
+          <p className="fz12 mt-4  fw-semibold color_orange">More</p>
         </SwiperSlide>
       </Swiper>
+      <hr className="my-0 mt-3 mb-2" />
+
+      <div className="">
+        <p className="fz14 fw-semibold text-muted">Gem Promotion</p>
+        <div className="d-flex align-items-center justify-content-between mt-2">
+          <div className="d-flex align-items-center gap-2">
+            <SiRubygems
+              color="#A020F0"
+              size={20}
+            />
+            <p className="fz14">
+              Earn up to <strong>915</strong> gems on this item
+            </p>
+          </div>
+          <MdOutlineKeyboardArrowRight size={22} />
+        </div>
+        <hr />
+      </div>
+
+      <div className="d-flex align-items-center justify-content-between mt-2">
+        <div className="d-flex align-items-center gap-2">
+          <MdRedeem
+            className="color_orange"
+            size={22}
+          />
+          <p className="fz14">Redeems gems on checkout to get discount</p>
+        </div>
+        <MdOutlineKeyboardArrowRight size={22} />
+      </div>
     </div>
   );
 }
