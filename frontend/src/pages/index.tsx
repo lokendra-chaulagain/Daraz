@@ -54,7 +54,7 @@ export default function Home() {
           left={"Categories"}
           right={"SEE MORE"}
         />
-        
+
         <FlashSale />
 
         <CategoriesCarousel
