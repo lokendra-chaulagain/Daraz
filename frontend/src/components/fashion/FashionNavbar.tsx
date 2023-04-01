@@ -6,13 +6,13 @@ import Link from "next/link";
 import { FiShoppingCart, FiMoreHorizontal } from "react-icons/fi";
 
 export default function FashionNavbar() {
-  const { data: tags } = useGetAllSearchTagQuery();
+  // const { data: tags } = useGetAllSearchTagQuery();
 
-  const randomIndex = tags && Math.floor(Math.random() * tags.length);
-  const [currentTag, setCurrentTag] = useState("iphone 11 cover");
-  useEffect(() => {
-    tags && randomIndex && setCurrentTag(tags[randomIndex].name);
-  }, [randomIndex, tags]);
+  // const randomIndex = tags && Math.floor(Math.random() * tags.length);
+  // const [currentTag, setCurrentTag] = useState("iphone 11 cover");
+  // useEffect(() => {
+  //   tags && randomIndex && setCurrentTag(tags[randomIndex].name);
+  // }, [randomIndex, tags]);
 
   return (
     <div className="border_bottom shadow-lg d-flex align-items-center justify-content-between  px-2 py-1 ">
@@ -30,7 +30,8 @@ export default function FashionNavbar() {
             disabled
             className="fz15 border-0 outline_0 bg_color_white"
             style={{ caretColor: "#fd5403" }}
-            placeholder={currentTag ? currentTag : "iphone 11 cover"}
+            // placeholder={currentTag ? currentTag : "iphone 11 cover"}
+            placeholder="iphone 11 cover"
           />
         </div>
       </Link>

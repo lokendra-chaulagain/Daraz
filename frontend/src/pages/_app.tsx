@@ -6,9 +6,10 @@ import HomeHeader from "../components/home/HomeHeader";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import { Provider } from "react-redux";
-import { store } from "../redux/store/store";
+
 
 import ProductNavbar from "../components/product/ProductNavbar";
+import { store } from "../redux/store";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {

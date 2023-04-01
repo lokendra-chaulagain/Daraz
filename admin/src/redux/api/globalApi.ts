@@ -4,7 +4,7 @@ import { SearchTag, Banner, Category, Size, Color, Genre } from "../type/type";
 export const globalApi = createApi({
   reducerPath: "globalApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/",
+    baseUrl: "http://localhost:4000/api/",
   }),
 
   tagTypes: ["SearchTag", "Banner", "Category", "Size", "Color", "Genre"],

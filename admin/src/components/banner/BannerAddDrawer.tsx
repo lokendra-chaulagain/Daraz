@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, Col, Drawer, Form, Input, Row, Space } from "antd";
+import { Button, Col, Drawer, Form, Input, Row, Select, Space } from "antd";
 import { useCreateBannerMutation } from "@/redux/api/globalApi";
 import toast from "react-hot-toast";
 
@@ -20,8 +20,14 @@ export default function BannerAddDrawer() {
   };
 
   const handleCreateBanner = (values: any) => {
+    console.log(values);
+    const formData = new FormData();
+    formData.append("author", values.author);
+    formData.append("activeStatus", values.activeStatus);
+    formData.append("image", values.image);
+
     try {
-      createBanner(values);
+      createBanner(formData);
       form.resetFields();
       success();
     } catch (error) {
@@ -55,10 +61,37 @@ export default function BannerAddDrawer() {
               <Form.Item
                 name="image"
                 label="Banner Image"
-                rules={[{ required: true, message: "Please select banner image" }]}>
-                <Input type="file" />
+                rules={[{ required: true, message: "Required Field" }]}>
+                <Input
+                  // value={images}
+                  type="file"
+                  // onChange={onChange}
+                />
               </Form.Item>
             </Col>
+
+            <Col span={24}>
+              <Form.Item
+                name="activeStatus"
+                label="Active Status">
+                <Select
+                  defaultValue="inActive"
+                  options={[
+                    { value: "active", label: "Active" },
+                    { value: "inActive", label: "InActive" },
+                  ]}
+                />
+              </Form.Item>
+            </Col>
+
+            <Col span={24}>
+              <Form.Item
+                name="author"
+                label="Author">
+                <Input />
+              </Form.Item>
+            </Col>
+
             <Col
               span={24}
               className="d-flex  justify-content-end">

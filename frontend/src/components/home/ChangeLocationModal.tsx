@@ -2,10 +2,10 @@ import React from "react";
 import { Timeline } from "antd";
 import { BsDot } from "react-icons/bs";
 
-export default function ChangeLocationModal({ closeBig, setOpenBigModal }: any) {
-  const handleLocationSetSuccess = () => {
-    setOpenBigModal(false);
-  };
+export default function ChangeLocationModal() {
+  // const handleLocationSetSuccess = () => {
+  //   setOpenBigModal(false);
+  // };
 
   return (
     <div
@@ -14,7 +14,7 @@ export default function ChangeLocationModal({ closeBig, setOpenBigModal }: any) 
       <div style={{ backgroundColor: "#eef1f5e7", width: "100vw" }}>
         <div className="d-flex border_bottom  align-items-center justify-content-between py-3 px-2">
           <p
-            onClick={closeBig}
+            // onClick={closeBig}
             className="fz14">
             Close
           </p>
@@ -103,7 +103,7 @@ export default function ChangeLocationModal({ closeBig, setOpenBigModal }: any) 
 
         <div className="bg_color_white pp-2 shadow_0 border_top shadow-lg px-3 pb-3">
           <button
-            onClick={handleLocationSetSuccess}
+            // onClick={handleLocationSetSuccess}
             type="submit"
             className="btn rounded-1 bg_color_orange color_white w-100 mt-2">
             Confirm
@@ -111,5 +111,36 @@ export default function ChangeLocationModal({ closeBig, setOpenBigModal }: any) 
         </div>
       </div>
     </div>
+
+    // <div>
+    //   <button
+    //     className="btn btn-primary"
+    //     type="button"
+    //     data-bs-toggle="offcanvas"
+    //     data-bs-target="#changeLocation"
+    //     aria-controls="changeLocation">
+    //     Toggle bottom offcanvas
+    //   </button>
+
+    //   <div
+    //     className="offcanvas offcanvas-bottom"
+    //     tab-index="-1"
+    //     id="changeLocation"
+    //     aria-labelledby="changeLocationLabel">
+    //     <div className="offcanvas-header">
+    //       <h5
+    //         className="offcanvas-title"
+    //         id="changeLocationLabel">
+    //         Offcanvas bottom
+    //       </h5>
+    //       <button
+    //         type="button"
+    //         className="btn-close"
+    //         data-bs-dismiss="offcanvas"
+    //         aria-label="Close"></button>
+    //     </div>
+    //     <div className="offcanvas-body small">...</div>
+    //   </div>
+    // </div>
   );
 }

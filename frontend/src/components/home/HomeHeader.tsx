@@ -1,17 +1,18 @@
-import { useGetAllSearchTagQuery } from "@/src/redux/api/globalApi";
+import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
+import { fetchAllSearchTag } from "@/src/redux/search-tag/searchTagAction";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { AiOutlineScan, AiOutlineSearch } from "react-icons/ai";
 import { SiRubygems } from "react-icons/si";
 
 export default function HomeHeader() {
-  const { data: tags } = useGetAllSearchTagQuery();
-  const [currentTag, setCurrentTag] = useState("iphone 11 cover");
-  const randomIndex = tags && Math.floor(Math.random() * tags.length);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    tags && randomIndex && setCurrentTag(tags[randomIndex].name);
-  }, [randomIndex, tags]);
+  React.useEffect(() => {
+    dispatch(fetchAllSearchTag());
+  }, [dispatch]);
+  const { loading, searchTags, error } = useAppSelector((state: any) => state.searchTag);
+  console.log(searchTags)
 
   return (
     <div className="shadow_0  d-flex align-items-center justify-content-between gap-2  px-2 pt-3 pb-1 ">
@@ -34,7 +35,8 @@ export default function HomeHeader() {
             disabled
             className="border-0 outline_0  "
             style={{ width: "100%", backgroundColor: "transparent" }}
-            placeholder={currentTag ? currentTag : "iphone 11 cover"}
+            // placeholder={currentTag ? currentTag : "iphone 11 cover"}
+            placeholder="iphone 11 cover"
           />
         </div>
       </Link>
