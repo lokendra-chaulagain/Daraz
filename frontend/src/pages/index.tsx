@@ -10,7 +10,6 @@ import HappyHour from "../components/home/HappyHour";
 import SaveOnDaraz from "../components/home/SaveOnDaraz";
 import GlobalSingleProduct from "../components/GlobalSingleProduct";
 import IndexCategorySelect from "../components/home/IndexCategorySelect";
-import LocationMapModal from "../components/home/LocationMapModal";
 import ChangeLocationModal from "../components/home/ChangeLocationModal";
 
 export default function Home() {
@@ -31,6 +30,11 @@ export default function Home() {
     setOpenBigModal(false);
   };
 
+  const [openedChangeLocationModal, setOpenedChangeLocationModal] = useState(false);
+  const openModal = () => {
+    setOpenedChangeLocationModal(true);
+  };
+
   return (
     <div
       className="d-flex flex-column  justify-content-between overflow-y-hidden"
@@ -40,15 +44,11 @@ export default function Home() {
       <div className="overflow-scroll">
         <div className="position-relative">
           <HomeHeroCarousel />
-          <div
-            onClick={openSmall}
-            className="position-absolute  z-1 w-100"
-            style={{ bottom: "-20%" }}>
-            <HomeCarouselBottomSearch />
-          </div>
+          <HomeCarouselBottomSearch openModal={openModal} />
         </div>
 
         <DiamondRow />
+
         <HappyHour />
         <CategoriesCarousel
           left={"Categories"}
@@ -72,20 +72,7 @@ export default function Home() {
       </div>
       <Footer />
 
-      {openSmallModal && (
-        <LocationMapModal
-          setOpenSmallModal={setOpenSmallModal}
-          openSmall={openSmall}
-          openBig={openBig}
-        />
-      )}
-
-      {openBigModal && (
-        <ChangeLocationModal
-          setOpenBigModal={setOpenBigModal}
-          closeBig={closeBig}
-        />
-      )}
+      {openedChangeLocationModal && <ChangeLocationModal />}
     </div>
   );
 }

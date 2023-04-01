@@ -138,38 +138,32 @@ a {
   border-bottom: 1px solid rgb(230, 228, 228) !important;
 }
 
-
-
-.bg_blue_grey{
+.bg_blue_grey {
   background-color: #eef1f5e7 !important;
 }
 
-.more_item_hover:hover{
+.more_item_hover:hover {
   background-color: #eef1f5e7 !important;
   cursor: pointer;
-
 }
 
-.voucher_bg_color{
+.voucher_bg_color {
   background-color: #eeaa8a48 !important;
 }
 
-.bg_purple{
-  background-color: #4E31AA !important;
+.bg_purple {
+  background-color: #4e31aa !important;
 }
 
-.bg_purple_shadow{
+.bg_purple_shadow {
   background-color: #4d31aa31 !important;
 }
-.color_purple{
-  color: #4E31AA !important;
+.color_purple {
+  color: #4e31aa !important;
 }
 
-.color_purple_dark{
-  color: #3A1078 !important;
+.color_purple_dark {
+  color: #3a1078 !important;
 }
-
-
-
 
 
