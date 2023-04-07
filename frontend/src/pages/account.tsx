@@ -23,7 +23,7 @@ export default function Account() {
           style={{ marginTop: "7vh" }}>
           <button
             type="submit"
-            className="btn rounded-1 bg_color_white color_orange w-50 fw-semibold">
+            className="btn rounded-1 bg_white color_orange w-50 fw-semibold">
             LOGIN / SIGNUP
           </button>
         </div>
@@ -36,7 +36,7 @@ export default function Account() {
         <MyService />
       </div>
 
-      <div className="position-fixed w-100 bottom-0 bg_color_white">
+      <div className="position-fixed w-100 bottom-0 bg_white">
         <Footer />
       </div>
     </div>

@@ -1,54 +1,49 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import styles from "../../styles/ScrollProductSection.module.css";
 import { AiOutlineHome, AiFillHome, AiOutlineFire, AiFillFire } from "react-icons/ai";
 import { MdOutlineLocalOffer, MdLocalOffer, MdFaceRetouchingNatural } from "react-icons/md";
 import { FaRegBuilding, FaBuilding } from "react-icons/fa";
 
 export default function IndexCategorySelect({ indexCategorySelected, setIndexCategorySelected }: any) {
   return (
-    <div className={`${styles.product_section} mt-3 `}>
-      <Swiper
-        slidesPerView={4.5}
-        spaceBetween={10}
-        className="mySwiper py-2 ">
-        <SwiperSlide
+    <div className="bg_blue_grey mt-4 mb-3 container-fluid">
+      <div className="d-flex align-items-center justify-content-between  py-3">
+        <div
           onClick={() => setIndexCategorySelected("all")}
-          className={indexCategorySelected === "all" ? "d-flex flex-column align-items-center color_orange " : "d-flex flex-column align-items-center"}>
+          className={indexCategorySelected === "all" ? "d-flex flex-column align-items-center color_orange cp " : "d-flex flex-column align-items-center cp"}>
           {indexCategorySelected === "all" ? <AiFillHome size={24} /> : <AiOutlineHome size={24} />}
-          <p className="fz12 fw-semibold">All</p>
-        </SwiperSlide>
+          <p className="fz12 fw-semibold cp">All</p>
+        </div>
 
-        <SwiperSlide
+        <div
           onClick={() => setIndexCategorySelected("deals")}
-          className={indexCategorySelected === "deals" ? "d-flex flex-column align-items-center color_orange " : "d-flex flex-column align-items-center"}>
+          className={indexCategorySelected === "deals" ? "d-flex flex-column align-items-center color_orange cp " : "d-flex flex-column align-items-center cp"}>
           {indexCategorySelected === "deals" ? <MdLocalOffer size={24} /> : <MdOutlineLocalOffer size={24} />}
-          <p className="fz12 fw-semibold">Deals</p>
-        </SwiperSlide>
+          <p className="fz12 fw-semibold cp">Deals</p>
+        </div>
 
-        <SwiperSlide
+        <div
           onClick={() => setIndexCategorySelected("picks")}
-          className={indexCategorySelected === "picks" ? "d-flex flex-column align-items-center color_orange " : "d-flex flex-column align-items-center"}>
+          className={indexCategorySelected === "picks" ? "d-flex flex-column align-items-center color_orange cp " : "d-flex flex-column align-items-center cp"}>
           {indexCategorySelected === "picks" ? <AiFillFire size={24} /> : <AiOutlineFire size={24} />}
-          <p className="fz12 fw-semibold">Picks</p>
-        </SwiperSlide>
+          <p className="fz12 fw-semibold cp">Picks</p>
+        </div>
 
-        <SwiperSlide
+        <div
           onClick={() => setIndexCategorySelected("mall")}
-          className={indexCategorySelected === "mall" ? "d-flex flex-column align-items-center color_orange " : "d-flex flex-column align-items-center"}>
+          className={indexCategorySelected === "mall" ? "d-flex flex-column align-items-center color_orange " : "d-flex flex-column align-items-center cp"}>
           {indexCategorySelected === "mall" ? <FaBuilding size={24} /> : <FaRegBuilding size={24} />}
-          <p className="fz12 fw-semibold">Mall</p>
-        </SwiperSlide>
+          <p className="fz12 fw-semibold cp">Mall</p>
+        </div>
 
-        <SwiperSlide
+        <div
           onClick={() => setIndexCategorySelected("beauty")}
           className={indexCategorySelected === "beauty" ? "d-flex flex-column align-items-center color_orange " : "d-flex flex-column align-items-center"}>
           <MdFaceRetouchingNatural size={24} />
-          <p className="fz12 fw-semibold">Beauty</p>
-        </SwiperSlide>
-      </Swiper>
+          <p className="fz12 fw-semibold cp">Beauty</p>
+        </div>
+      </div>
     </div>
   );
 }

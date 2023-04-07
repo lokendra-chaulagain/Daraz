@@ -1,0 +1,13 @@
+.carousel_image_div {
+  position: relative;
+  width: 100vh;
+  height: 20vh;
+}
+
+.search_field_wrapper {
+  position: absolute;
+  width: 100vw;
+  top: 96%;
+  z-index: 1;
+  box-shadow: var(--box-shadow-1);
+}

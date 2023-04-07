@@ -22,7 +22,7 @@ export default function ChangeLocationModal() {
           <p></p>
         </div>
 
-        <div className="bg_color_white d-flex  align-items-center justify-content-between rounded-3 overflow-hidden mx-3 mt-3 py-2 ps-1 pe-3 shadow_0">
+        <div className="bg_white d-flex  align-items-center justify-content-between rounded-3 overflow-hidden mx-3 mt-3 py-2 ps-1 pe-3 shadow_0">
           <div className="d-flex align-items-center ">
             <BsDot
               size={30}
@@ -34,7 +34,7 @@ export default function ChangeLocationModal() {
           <p className="fz14 text-muted ">Selection below...</p>
         </div>
 
-        <div className="bg_color_white rounded-3 overflow-hidden mx-3 mt-3 shadow_0">
+        <div className="bg_white rounded-3 overflow-hidden mx-3 mt-3 shadow_0">
           <Timeline
             className="pt-5 px-3 fw-semibold"
             items={[
@@ -53,7 +53,7 @@ export default function ChangeLocationModal() {
 
         <p className="fz15 px-4 my-3">Select the Region</p>
         <div
-          className="bg_color_white rounded-3 overflow-hidden mx-3 mt-3 shadow_0 p-3 overflow-scroll"
+          className="bg_white rounded-3 overflow-hidden mx-3 mt-3 shadow_0 p-3 overflow-scroll"
           style={{ height: "30vh" }}>
           <div className="mb-3 ">
             <p className="fz14 fw-semibold">Bagmati Provience</p>
@@ -101,7 +101,7 @@ export default function ChangeLocationModal() {
           </div>
         </div>
 
-        <div className="bg_color_white pp-2 shadow_0 border_top shadow-lg px-3 pb-3">
+        <div className="bg_white pp-2 shadow_0 border_top shadow-lg px-3 pb-3">
           <button
             // onClick={handleLocationSetSuccess}
             type="submit"

@@ -9,7 +9,7 @@ import RecommendedBySeller from "./RecommendedBySeller";
 
 export default function VendorDetail() {
   return (
-    <div className="bg_color_white mt-1 px-2 py-2">
+    <div className="bg_white mt-1 px-2 py-2">
       <div className="d-flex align-items-center justify-content-between">
         <div className=" d-flex align-items-center gap-2">
           <div className={`${styles.vendor_logo}`}>

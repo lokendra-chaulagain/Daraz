@@ -30,7 +30,7 @@ export default function SaveOnDarazSlug() {
     <div
       className="position-relative"
       style={{ height: "100vh" }}>
-      <div className="position-fixed w-100 bg_color_white z-3">
+      <div className="position-fixed w-100 bg_white z-3">
         <SaveOnDarazNav title={title} />
       </div>
 

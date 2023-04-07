@@ -9,7 +9,7 @@ import { SiRubygems } from "react-icons/si";
 
 export default function ProductPromotion() {
   return (
-    <div className="bg_color_white mt-3 mx-2 bg_color_white px-2 rounded-2 py-3">
+    <div className="bg_white mt-3 mx-2 bg_white px-2 rounded-2 py-3">
       <div className="d-flex align-items-center  justify-content-between ">
         <p className="fz14 fw-semibold text-muted">Product Promotion</p>
         <MdOutlineKeyboardArrowRight size={20} />

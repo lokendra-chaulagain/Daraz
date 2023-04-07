@@ -27,7 +27,7 @@ export default function BabiesAndToys() {
           aria-labelledby="headingOne"
           data-bs-parent="#women-accordion">
           <div className="accordion-body d-flex flex-wrap p-0 ">
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -40,7 +40,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold text-center">Tops & Shirts</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -53,7 +53,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold text-center">Hoodies & Sweatshirts</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -66,7 +66,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold text-center">Sweaters & Cardigans</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -79,7 +79,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold text-center">Jackets & Coats</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -92,7 +92,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold text-center">Pants & Leggings</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -105,7 +105,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold text-center">Jeans</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -118,7 +118,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold text-center">Shorts</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -131,7 +131,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold text-center">Skirts</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -144,7 +144,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold text-center">Dresses</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -295,7 +295,7 @@ export default function BabiesAndToys() {
           aria-labelledby="headingSeven"
           data-bs-parent="#women-accordion">
           <div className="accordion-body d-flex gap-1 p-0">
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -308,7 +308,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold ">Girls Clothing</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>
@@ -321,7 +321,7 @@ export default function BabiesAndToys() {
               <p className="fz10 fw-semibold ">Girls Shoes</p>
             </div>
 
-            <div className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-2">
+            <div className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-2">
               <div
                 className="image_div position-relative"
                 style={{ height: "7vh", width: "7vh" }}>

@@ -50,7 +50,7 @@ export default function Cat() {
             <AiOutlineSearch size={24} />
             <input
               type="text"
-              className="border-0 outline_0 bg_color_white"
+              className="border-0 outline_0 bg_white"
               style={{ caretColor: "#fd5403" }}
               placeholder={currentTag ? currentTag : "iphone 11 cover"}
             />

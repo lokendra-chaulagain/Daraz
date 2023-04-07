@@ -36,43 +36,32 @@ export default function Home() {
   };
 
   return (
-    <div
-      className="d-flex flex-column  justify-content-between overflow-y-hidden"
-      style={{ height: "100vh" }}>
+    <div className="d-flex flex-column ">
       <HomeHeader />
+      <HomeHeroCarousel openModal={openModal} />
+      <DiamondRow />
+      <CategoriesCarousel
+        left={"Categories"}
+        right={"SEE MORE"}
+      />
 
-      <div className="overflow-scroll">
-        <div className="position-relative">
-          <HomeHeroCarousel />
-          <HomeCarouselBottomSearch openModal={openModal} />
-        </div>
+      <FlashSale />
+      <HappyHour />
 
-        <DiamondRow />
+      <CategoriesCarousel
+        left={"Trending Now"}
+        right={""}
+      />
+      
+      <SaveOnDaraz />
+      <IndexCategorySelect
+        setIndexCategorySelected={setIndexCategorySelected}
+        indexCategorySelected={indexCategorySelected}
+      />
 
-        <HappyHour />
-        <CategoriesCarousel
-          left={"Categories"}
-          right={"SEE MORE"}
-        />
+      <GlobalSingleProduct datas={datas} />
 
-        <FlashSale />
-
-        <CategoriesCarousel
-          left={"Trending Now"}
-          right={""}
-        />
-
-        <SaveOnDaraz />
-
-        <IndexCategorySelect
-          setIndexCategorySelected={setIndexCategorySelected}
-          indexCategorySelected={indexCategorySelected}
-        />
-        <GlobalSingleProduct datas={datas} />
-      </div>
-      <Footer />
-
-      {openedChangeLocationModal && <ChangeLocationModal />}
+      {openedChangeLocationModal && <ChangeLocationModal />} 
     </div>
   );
 }

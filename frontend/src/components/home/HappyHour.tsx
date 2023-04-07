@@ -6,7 +6,7 @@ export default function HappyHour() {
   return (
     <div
       className="position-relative mt-2 "
-      style={{ height: "16vh" }}>
+      style={{ height: "20vh" }}>
       <Image
         src={demo}
         alt=""

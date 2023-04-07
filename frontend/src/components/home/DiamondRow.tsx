@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function DiamondRow() {
   return (
-    <div className="d-flex align-items-center justify-content-between mt-5 px-2 ">
+    <div className="d-flex  align-items-center justify-content-between mt-5 px-2 ">
       <Link href={"/fashion"}>
         <div>
           <div className={`${styles.diamond_image_div}`}>

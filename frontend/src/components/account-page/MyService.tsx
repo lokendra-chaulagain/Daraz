@@ -5,7 +5,7 @@ import { MdOutlineRateReview, MdOutlinePayments, MdSupportAgent } from "react-ic
 
 export default function MyService() {
   return (
-    <div className="px-2 py-3  bg_color_white mt-2">
+    <div className="px-2 py-3  bg_white mt-2">
       <p className="fz15 fw-bold">My Services</p>
 
       <div className="row d-flex align-items-center justify-content-between mt-2">

@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { ImLocation } from "react-icons/im";
 import { MdOutlineClear, MdOutlineKeyboardArrowRight } from "react-icons/md";
-import ChangeLocationModal from "./ChangeLocationModal";
 
 export default function HomeCarouselBottomSearch({ openModal }: any) {
   return (
@@ -53,7 +52,7 @@ export default function HomeCarouselBottomSearch({ openModal }: any) {
             <div
               onClick={openModal}
               data-bs-dismiss="offcanvas"
-              className="border_top bg_color_white  d-flex align-items-center justify-content-between px-2  py-3">
+              className="border_top bg_white  d-flex align-items-center justify-content-between px-2  py-3">
               <div className="d-flex align-items-center gap-2 ">
                 <ImLocation
                   size={22}

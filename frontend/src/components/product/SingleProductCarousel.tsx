@@ -47,7 +47,7 @@ export default function SingleProductCarousel() {
           ))}
       </Swiper>
 
-      <div className="bg_color_white rounded-2 mx-2 mt-3 px-2 py-3">
+      <div className="bg_white rounded-2 mx-2 mt-3 px-2 py-3">
         <div className="">
           <p className="fz15">Improved Quality LARGE Storage Bags Organizers Portable Bamboo Charcoal Clothes Blanket . . .</p>
           <p className="fz16 fw-semibold mt-2">Rs. 30538</p>

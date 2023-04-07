@@ -4,7 +4,7 @@ import { RiQuestionnaireFill, RiQuestionAnswerFill } from "react-icons/ri";
 
 export default function QNA() {
   return (
-    <div className="bg_color_white px-2 mt-1 py-3">
+    <div className="bg_white px-2 mt-1 py-3">
       <div className=" d-flex align-items-center justify-content-between ">
         <p className="fz15 fw-semibold text-muted">Questions about this product (3)</p>
         <Link href={"/qna"}>

@@ -3,7 +3,7 @@ import { IoIosSquare } from "react-icons/io";
 
 export default function HighlightsAndDescription() {
   return (
-    <div className="bg_color_white px-2">
+    <div className="bg_white px-2">
       <div>
         <p className="fz14 fw-semibold text-muted">Highlights</p>
         <hr className="my-2" />

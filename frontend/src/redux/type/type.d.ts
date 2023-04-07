@@ -38,3 +38,11 @@ export interface Genre {
   createdAt: string;
   updatedAt: Date;
 }
+
+export interface SubCategory {
+  _id: string;
+  name: string;
+  categoryId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}

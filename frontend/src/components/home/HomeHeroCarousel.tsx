@@ -4,48 +4,42 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper";
 import Image from "next/image";
-import banner1 from "../../../assets/banner/1.jpg";
-import banner2 from "../../../assets/banner/2.jpg";
-import banner3 from "../../../assets/banner/3.jpg";
+import { useGetAllBannerQuery } from "@/src/redux/api/globalApi";
+import styles from "../../styles/home/HomeCarousel.module.css";
+import HomeCarouselBottomSearch from "./HomeCarouselBottomSearch";
 
-export default function HomeHeroCarousel() {
+export default function HomeHeroCarousel({ openModal }: any) {
+  const { data: banners } = useGetAllBannerQuery();
+
   return (
-    <div>
-      <div className="swiper_wrapper">
-        <Swiper
-          pagination={{
-            dynamicBullets: true,
-          }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          modules={[Autoplay,Pagination]}
-          className="mySwiper">
-          <SwiperSlide style={{ position: "relative", width: "10vw", height: "20vh" }}>
-            <Image
-              src={banner1}
-              fill
-              alt="banner img"
-            />
-          </SwiperSlide>
-
-          <SwiperSlide style={{ position: "relative", width: "10vw", height: "20vh" }}>
-            <Image
-              src={banner2}
-              fill
-              alt="banner img"
-            />
-          </SwiperSlide>
-
-          <SwiperSlide style={{ position: "relative", width: "10vw", height: "20vh" }}>
-            <Image
-              src={banner3}
-              fill
-              alt="banner img"
-            />
-          </SwiperSlide>
-        </Swiper>
+    <div className="position-relative mt-4">
+      <Swiper
+        loop={true}
+        pagination={{
+          dynamicBullets: true,
+        }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay, Pagination]}
+        className="mySwiper">
+        {banners &&
+          banners.map((banner: any, _id: any) => (
+            <SwiperSlide
+              key={_id}
+              className={styles.carousel_image_div}>
+              <Image
+                //  src={`${process.env.CLOUDINARY_PRE_URL}/${banner.image}`}
+                src={`${"https://res.cloudinary.com/dyof6o0ul/image/upload"}/${banner.image}`}
+                fill
+                alt="banner img"
+              />
+            </SwiperSlide>
+          ))}
+      </Swiper>
+      <div className={styles.search_field_wrapper}>
+        <HomeCarouselBottomSearch openModal={openModal} />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { TbTruckReturn } from "react-icons/tb";
 
 export default function MyOrders() {
   return (
-    <div className="px-2 py-3 bg_color_white  mt-2">
+    <div className="px-2 py-3 bg_white  mt-2">
       <div className="d-flex align-items-center justify-content-between">
         <p className="fz14 fw-bold">My Orders</p>
         <p className="fz12 color_orange fw-semibold">View All</p>

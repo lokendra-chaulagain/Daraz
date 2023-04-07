@@ -7,9 +7,8 @@ import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 
-
 import ProductNavbar from "../components/product/ProductNavbar";
-import { store } from "../redux/store";
+import { store } from "../redux/store/store";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -22,10 +21,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <div
-        className="d-flex flex-column  justify-content-between overflow-y-hidden"
+        className="d-flex flex-column  justify-content-between "
         style={{ height: "100vh" }}>
         {/* {currentRoute === "scan" ? "" : currentRoute === "search" ? "" : <HomeHeader />} */}
-        <div className="overflow-scroll">
+        <div >
           <Component {...pageProps} />
         </div>
         {/* {currentRoute === "scan" ? "" : currentRoute === "search" ? "" : <Footer />} */}

@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function ProductNavbar() {
   return (
-    <div className="shadow_0 d-flex bg_color_white shadow-sm border_bottom align-items-center justify-content-between gap-2 p-2 ">
+    <div className="shadow_0 d-flex bg_white shadow-sm border_bottom align-items-center justify-content-between gap-2 p-2 ">
       <div className="d-flex flex-column">
         <MdOutlineArrowBackIos size={22} />
       </div>

@@ -28,7 +28,7 @@ export default function FashionNavbar() {
           <input
             type="text"
             disabled
-            className="fz15 border-0 outline_0 bg_color_white"
+            className="fz15 border-0 outline_0 bg_white"
             style={{ caretColor: "#fd5403" }}
             // placeholder={currentTag ? currentTag : "iphone 11 cover"}
             placeholder="iphone 11 cover"

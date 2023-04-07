@@ -4,13 +4,14 @@ import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 dotenv.config();
 import cors from "cors";
-import bannerRoute from "./src/routes/banner.route.js"
-
+import bannerRoute from "./src/routes/banner.route.js";
+import categoryRoute from "./src/routes/category.route.js";
+import subCategoryRoute from "./src/routes/subCategory.route.js";
+import miniCategoryRoute from "./src/routes/miniCategory.route.js";
 
 const port = process.env.PORT;
 app.use(express.json());
 app.use(cors());
-
 
 //DbConnection
 mongoose
@@ -30,6 +31,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/banner", bannerRoute);
+app.use("/api/category", categoryRoute);
+app.use("/api/subCategory", subCategoryRoute);
+app.use("/api/miniCategory", miniCategoryRoute);
 
 //portListening
 app.listen(port, (error) => {

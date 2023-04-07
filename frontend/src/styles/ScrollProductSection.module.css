@@ -3,10 +3,6 @@
   font-weight: 600;
 }
 
-.product_section {
-  background-color: #eef1f5e7 !important;
-}
-
 .product_name {
   font-size: 14px;
   font-weight: 400;
@@ -21,3 +17,5 @@
   justify-content: center;
   color: var(--color-orange);
 }
+
+

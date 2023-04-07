@@ -5,7 +5,7 @@ import { BiTargetLock } from "react-icons/bi";
 
 export default function DeliveryModal() {
   return (
-    <div className="mt-1 px-2 py-3 bg_color_white">
+    <div className="mt-1 px-2 py-3 bg_white">
       <div
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasBottomDelivery"

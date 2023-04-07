@@ -36,7 +36,7 @@ export default function LoginRedirectCard() {
 
         <button
           type="submit"
-          className="btn rounded-1 bg_color_white color_orange w-75 fw-semibold">
+          className="btn rounded-1 bg_white color_orange w-75 fw-semibold">
           Create an Account
         </button>
         <button

@@ -6,7 +6,7 @@ import { AiFillCheckSquare } from "react-icons/ai";
 
 export default function ServiceModal() {
   return (
-    <div className="px-2 pb-3  bg_color_white">
+    <div className="px-2 pb-3  bg_white">
       <hr className="my-0 mb-3" />
       <div
         data-bs-toggle="offcanvas"

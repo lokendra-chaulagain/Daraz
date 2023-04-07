@@ -1,21 +1,12 @@
-import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
-import { fetchAllSearchTag } from "@/src/redux/search-tag/searchTagAction";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AiOutlineScan, AiOutlineSearch } from "react-icons/ai";
 import { SiRubygems } from "react-icons/si";
+import styles from "../../styles/home/HomeHeader.module.css";
 
 export default function HomeHeader() {
-  const dispatch = useAppDispatch();
-
-  React.useEffect(() => {
-    dispatch(fetchAllSearchTag());
-  }, [dispatch]);
-  const { loading, searchTags, error } = useAppSelector((state: any) => state.searchTag);
-  console.log(searchTags)
-
   return (
-    <div className="shadow_0  d-flex align-items-center justify-content-between gap-2  px-2 pt-3 pb-1 ">
+    <div className={`${styles.header_wrapper} pb-1`}>
       <Link href={"/scan"}>
         <div className="d-flex   flex-column">
           <AiOutlineScan size={20} />

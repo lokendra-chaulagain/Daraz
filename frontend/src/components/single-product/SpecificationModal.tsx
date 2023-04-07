@@ -4,7 +4,7 @@ import { IoIosSquare } from "react-icons/io";
 
 export default function SpecificationModal() {
   return (
-    <div className="bg_color_white mt-1 px-2 py-3">
+    <div className="bg_white mt-1 px-2 py-3">
       <div
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasBottom"

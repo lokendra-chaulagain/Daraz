@@ -16,8 +16,20 @@ import React from "react";
 import { RiUserStarLine } from "react-icons/ri";
 import demo from "../../../assets/product/1.jpg";
 
+import { GiLargeDress, GiLipstick } from "react-icons/gi";
+import { RiShirtLine, RiToolsLine } from "react-icons/ri";
+import { GiWatch } from "react-icons/gi";
+import { BiCamera, BiFridge, BiFootball } from "react-icons/bi";
+import { MdElectricalServices } from "react-icons/md";
+import { BsCart4 } from "react-icons/bs";
+import { FaBaby } from "react-icons/fa";
+import { TbSofa } from "react-icons/tb";
+import { useGetAllSubCategoryQuery } from "@/src/redux/api/globalApi";
+
 export default function Category() {
-  const categories = [
+  const { data: subCategories } = useGetAllSubCategoryQuery();
+
+const categories = [
     {
       name: "Webcams",
     },
@@ -73,6 +85,8 @@ export default function Category() {
     },
   ];
 
+  console.log(subCategories)
+
   return (
     <div
       className="position-relative overflow-hidden"
@@ -93,75 +107,77 @@ export default function Category() {
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <GiLargeDress size={20} />
             <p className="fz11 text-center ">Women Fashion</p>
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <GiLipstick size={20} />
+            <p className="fz11 text-center ">Health & Beauty</p>
+          </div>
+
+          <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
+            <RiShirtLine size={20} />
             <p className="fz11 text-center ">Men Fashion</p>
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <GiWatch size={20} />
             <p className="fz11 text-center ">
               Watches,Bags, <br /> Jewellery
             </p>
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <BiCamera size={20} />
             <p className="fz11 text-center ">Electronic Devices</p>
+
+            <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
+              <BiFridge size={20} />
+              <p className="fz11 text-center ">TV & Home Appliances</p>
+            </div>
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
-            <p className="fz11 text-center ">TV & Home Appliances</p>
-          </div>
-
-          <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <MdElectricalServices size={20} />
             <p className="fz11 text-center ">Electronic Accessories</p>
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <BsCart4 size={20} />
             <p className="fz11 text-center ">Groceries & Pets</p>
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <FaBaby size={20} />
             <p className="fz11 text-center ">Babies & Toys</p>
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <TbSofa size={20} />
             <p className="fz11 text-center ">Home & Lifestyle</p>
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <BiFootball size={20} />
             <p className="fz11 text-center ">Sports & Outdoor</p>
           </div>
 
           <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
-            <p className="fz11 text-center ">Just for you</p>
-          </div>
-
-          <div className="d-flex  flex-column align-items-center py-3 px-1 bg_blue_grey ">
-            <RiUserStarLine size={20} />
+            <RiToolsLine size={20} />
             <p className="fz11 text-center ">Motors,Tools & DIY</p>
           </div>
         </div>
 
-        <div className="col-9 overflow-scroll overflow-y-scroll" style={{height:"95vh"}}>
+        <div
+          className="col-9 overflow-scroll overflow-y-scroll"
+          style={{ height: "95vh" }}>
           {/* <div className="row d-flex ">
             {categories &&
               categories.map((category, index) => (
                 <div
                   key={index}
-                  className="col-4 bg_color_white   d-flex flex-column align-items-center shadow-sm p-3">
+                  className="col-4 bg_white   d-flex flex-column align-items-center shadow-sm p-3">
                   <div
                     className="image_div position-relative"
                     style={{ height: "7vh", width: "7vh" }}>
@@ -178,7 +194,7 @@ export default function Category() {
 
           <div>
             <WomenFashion />
-            <HealthAndBeauty />
+            {/* <HealthAndBeauty />
             <MenFashion />
             <WatchBagJewellery />
             <ElectronicDevice />
@@ -188,7 +204,7 @@ export default function Category() {
             <BabiesAndToys />
             <HomeAndLifestyle />
             <SportsAndOutdoor />
-            <MotorsToolsAndDiy />
+            <MotorsToolsAndDiy /> */}
           </div>
         </div>
       </div>
