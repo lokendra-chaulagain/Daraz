@@ -321,10 +321,8 @@ export const globalApi = createApi({
     getAllSubCategory: builder.query<SubCategory[], void>({
       query() {
         return {
-          url: `/subCategory`,
-          params: {
-            categoryId: "642fdfed9852e894f0143280", // Replace with the desired categoryId
-          },
+          url: `/subCategory?{categoryId="642fdfed9852e894f0143280"}`,
+        
           // credentials: "include",
         };
       },

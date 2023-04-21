@@ -4,10 +4,10 @@ import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 dotenv.config();
 import cors from "cors";
-import bannerRoute from "./src/routes/banner.route.js";
-import categoryRoute from "./src/routes/category.route.js";
-import subCategoryRoute from "./src/routes/subCategory.route.js";
-import miniCategoryRoute from "./src/routes/miniCategory.route.js";
+import bannerRoute from "./routes/banner.route.js";
+import categoryRoute from "./routes/category.route.js";
+import subCategoryRoute from "./routes/subCategory.route.js";
+import miniCategoryRoute from "./routes/miniCategory.route.js";
 
 const port = process.env.PORT;
 app.use(express.json());
