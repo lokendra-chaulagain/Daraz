@@ -8,6 +8,7 @@ import bannerRoute from "./routes/banner.route.js";
 import categoryRoute from "./routes/category.route.js";
 import subCategoryRoute from "./routes/subCategory.route.js";
 import miniCategoryRoute from "./routes/miniCategory.route.js";
+import validate from "./validation/validation-middleware.js";
 
 const port = process.env.PORT;
 app.use(express.json());
@@ -29,6 +30,8 @@ mongoose
 app.get("/", (req, res) => {
   res.status(200).json({ message: "welcome to the server" });
 });
+
+app.use(validate)
 
 app.use("/api/banner", bannerRoute);
 app.use("/api/category", categoryRoute);

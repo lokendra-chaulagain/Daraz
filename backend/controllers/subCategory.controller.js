@@ -1,9 +1,14 @@
+import mongoose from "mongoose";
 import SubCategory from "../models/SubCategory.js";
 import createError from "../utils/error.js";
+import slugify from "slugify";
+import generateSlug from "../utils/generateSlug.js";
 
 const createSubCategory = async (req, res, next) => {
   try {
-    const subCategory = new SubCategory(req.body);
+    const slug = generateSlug(req.body.name);
+
+    const subCategory = new SubCategory({ ...req.body, slug: slug });
     const savedSubCategory = await subCategory.save();
     res.status(201).json({
       msg: "Create Success",
@@ -11,7 +16,19 @@ const createSubCategory = async (req, res, next) => {
       savedSubCategory,
     });
   } catch (error) {
-    return next(createError(500, "Something Went Wrong"));
+    if (error.code === 11000) {
+      res.status(400).json({
+        msg: "Duplicate Name or Slug",
+        success: false,
+        error: error.message,
+      });
+    } else {
+      res.status(500).json({
+        msg: "Something Went Wrong",
+        success: false,
+        error: error.message,
+      });
+    }
   }
 };
 
@@ -41,12 +58,7 @@ const deleteSubCategory = async (req, res, next) => {
 
 const getAllSubCategory = async (req, res, next) => {
   try {
-    const categoryId = req.query.categoryId;
-    console.log(categoryId);
-    // const subCategories = await SubCategory.find({categoryId:categoryId});
-
     const subCategories = await SubCategory.find();
-    const totalSubCategories = await SubCategory.countDocuments();
     res.status(200).json({ msg: "Fetched Success", success: true, subCategories });
   } catch (error) {
     return next(createError(500, "Something Went Wrong"));

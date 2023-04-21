@@ -1,22 +1,41 @@
 import mongoose from "mongoose";
 
+const activeStatusEnum = ["active", "inActive"];
 const miniCategorySchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
+      unique: true,
     },
 
-    categoryId: {
+    image: {
+      type: String,
+      required: true,
+    },
+
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       required: true,
     },
 
-    subCategoryId: {
+    subCategory: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "SubCategory",
       required: true,
+    },
+
+    activeStatus: {
+      type: String,
+      enum: activeStatusEnum,
+      default: "inActive",
     },
   },
   { timestamps: true }

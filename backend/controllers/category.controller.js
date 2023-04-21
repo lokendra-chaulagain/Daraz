@@ -1,9 +1,14 @@
+import { uploadSingleFile } from "../middlewares/uploadSingleFile.js";
 import Category from "../models/Category.js";
 import createError from "../utils/error.js";
+import generateSlug from "../utils/generateSlug.js";
 
-const createCategory = async (req, res, next) => {
+const createCategory = async (req, res) => {
   try {
-    const category = new Category(req.body);
+    const slug = generateSlug(req.body.name);
+    const imageUrl = await uploadSingleFile(req.file);
+
+    const category = new Category({ ...req.body, slug: slug, image: imageUrl });
     const savedCategory = await category.save();
     res.status(201).json({
       msg: "Create Success",
@@ -11,7 +16,19 @@ const createCategory = async (req, res, next) => {
       savedCategory,
     });
   } catch (error) {
-    return next(createError(500, "Something Went Wrong"));
+    if (error.code === 11000) {
+      res.status(400).json({
+        msg: "Duplicate Name or Slug",
+        success: false,
+        error: error.message,
+      });
+    } else {
+      res.status(500).json({
+        msg: "Something Went Wrong",
+        success: false,
+        error: error.message,
+      });
+    }
   }
 };
 
@@ -29,7 +46,7 @@ const updateCategory = async (req, res, next) => {
 const deleteCategory = async (req, res, next) => {
   try {
     const deletedCategory = await Category.findByIdAndDelete(req.params.id);
-    res.status(200).json({
+    res.status({
       msg: "Deleted Successfully",
       success: true,
       deletedCategory,

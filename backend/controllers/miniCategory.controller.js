@@ -1,9 +1,14 @@
-import MiniCategory from "../models/MiniCategory.js";
+import { uploadSingleFile } from "../middlewares/uploadSingleFile.js";
 import createError from "../utils/error.js";
+import generateSlug from "../utils/generateSlug.js";
+import MiniCategory from "../models/MiniCategory.js";
 
-const createMiniCategory = async (req, res, next) => {
+export const createMiniCategory = async (req, res) => {
   try {
-    const miniCategory = new MiniCategory(req.body);
+    const slug = generateSlug(req.body.name);
+    const imageUrl = await uploadSingleFile(req.file);
+
+    const miniCategory = new MiniCategory({ ...req.body, slug: slug, image: imageUrl });
     const savedMiniCategory = await miniCategory.save();
     res.status(201).json({
       msg: "Create Success",
@@ -11,11 +16,23 @@ const createMiniCategory = async (req, res, next) => {
       savedMiniCategory,
     });
   } catch (error) {
-    return next(createError(500, "Something Went Wrong"));
+    if (error.code === 11000) {
+      res.status(400).json({
+        msg: "Duplicate Name or Slug",
+        success: false,
+        error: error.message,
+      });
+    } else {
+      res.status(500).json({
+        msg: "Something Went Wrong",
+        success: false,
+        error: error.message,
+      });
+    }
   }
 };
 
-const updateMiniCategory = async (req, res, next) => {
+export const updateMiniCategory = async (req, res, next) => {
   try {
     const updatedMiniCategory = await miniCategory.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -26,7 +43,7 @@ const updateMiniCategory = async (req, res, next) => {
   }
 };
 
-const deleteMiniCategory = async (req, res, next) => {
+export const deleteMiniCategory = async (req, res, next) => {
   try {
     const deletedMiniCategory = await MiniCategory.findByIdAndDelete(req.params.id);
     res.status(200).json({
@@ -39,7 +56,7 @@ const deleteMiniCategory = async (req, res, next) => {
   }
 };
 
-const getAllMiniCategory = async (req, res, next) => {
+export const getAllMiniCategory = async (req, res, next) => {
   try {
     const miniCategories = await MiniCategory.find();
     const totalMiniCategories = await MiniCategory.countDocuments();
@@ -48,5 +65,3 @@ const getAllMiniCategory = async (req, res, next) => {
     return next(createError(500, "Something Went Wrong"));
   }
 };
-
-export { createMiniCategory, updateMiniCategory, deleteMiniCategory, getAllMiniCategory };

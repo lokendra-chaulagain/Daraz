@@ -1,5 +1,3 @@
-
-
 import Joi from "joi";
 
 const banner = Joi.object().keys({

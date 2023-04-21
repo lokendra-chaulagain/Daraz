@@ -7,7 +7,7 @@ const createBanner = async (req, res, next) => {
   try {
     const image = req.file;
     const imageUrl = await uploadSingleFile(image);
-    const banner = new Banner({ image: imageUrl, author: req.body.author, activeStatus: req.body.activeStatus });
+    const banner = new Banner({ ...req.body, image: imageUrl });
     const savedBanner = await banner.save();
     res.status(201).json(savedBanner);
   } catch (error) {
