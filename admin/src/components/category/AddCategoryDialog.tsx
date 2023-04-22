@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { Grid, Dialog, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useCreateCategoryMutation } from "../../../redux/api/globalApi";
-import { toast } from "react-toastify";
-import CustomSpinner from "../CustomSpinner";
+import { useCreateCategoryMutation } from "../../rtk/api/globalApi";
+import { CreateToaster } from "../../helper/toast";
 
 export default function AddCategoryDialog() {
-  const [createCategory, createStatus] = useCreateCategoryMutation();
-  const { isLoading, isSuccess, isError, data, error, status } = createStatus;
-  console.log(createStatus);
-
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -17,6 +12,10 @@ export default function AddCategoryDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [createCategory, createStatus] = useCreateCategoryMutation();
+  const { isLoading, isSuccess, isError, data, error, status } = createStatus;
+  console.log(createStatus);
 
   const {
     register,
@@ -26,20 +25,18 @@ export default function AddCategoryDialog() {
     reset,
   } = useForm();
   let allFields = watch();
-  const success = () => toast.success("Create success");
 
-  const handleCreateCategory = async (e: any) => {
+  const handleCreateCategory = async () => {
     try {
       const formData = new FormData();
       formData.append("name", allFields.name);
+      formData.append("activeStatus", allFields.activeStatus);
+      formData.append("author", allFields.author);
       formData.append("image", allFields.image[0]);
-      console.log(formData);
-
-      await createCategory(formData);
+      CreateToaster(() => createCategory(formData), "Creating category...", "Category created successfully!", "Failed to create category.");
       reset();
-      success();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -65,24 +62,6 @@ export default function AddCategoryDialog() {
           <h4>Create New Category </h4>
           <p className="customPrimaryTxtColor">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem aspernatur enim incidunt omnis ducimus error similique provident, libero nobis perspiciatis?</p>
 
-          {isLoading && <h5 className="text-primary">Uploading...</h5>}
-          {isSuccess && <h5 className="text-success">Upload Success</h5>}
-          {isError && <h5 className="text-danger">Upload Failure</h5>}
-
-          <div className="row mb-3 ">
-            <label
-              htmlFor="name"
-              className="form-label h6 p_zero_first_cap mt-2 ">
-              Category Name
-            </label>
-            <input
-              className=" input_field_style form-control form-control-lg  px-2  border-0  rounded-0"
-              {...register("name", { required: "Required field" })}
-              placeholder="Category Name"
-            />
-            {errors.name && <p className="form_hook_error">{`${errors.name.message}`}</p>}
-          </div>
-
           <div className="row mb-3 ">
             <label
               htmlFor="image"
@@ -92,11 +71,78 @@ export default function AddCategoryDialog() {
             <input
               type="file"
               className=" input_field_style form-control form-control-lg  px-2  border-0  rounded-0"
-              {...register("image", { required: "Required field" })}
+              {...register("image", { required: true })}
               placeholder="Category Image"
             />
-            {errors.image && <p className="form_hook_error">{`${errors.image.message}`}</p>}
+            {errors.image && <span className="form_hook_error">This field is required</span>}
           </div>
+
+          <div className="row mb-3 ">
+            <label
+              htmlFor="name"
+              className="form-label h6 p_zero_first_cap mt-2 ">
+              Category Name
+            </label>
+            <input
+              className=" input_field_style form-control form-control-lg  px-2  border-0  rounded-0"
+              {...register("name", { required: true })}
+              placeholder="Category Name"
+            />
+            {errors.name && <span className="form_hook_error">This field is required</span>}
+          </div>
+
+
+
+
+
+
+
+          <div className="row ">
+            <label
+              htmlFor="activeStatus"
+              className="form-label px-0 mt-2 h6   ">
+              Status
+            </label>
+
+            <select
+              {...register("activeStatus", { required: true })}
+              className="form-select py-2 input_field_style border-0  rounded-0"
+              aria-label="Banner Status">
+              <option
+                selected
+                value="inActive">
+                InActive
+              </option>
+              <option value="active">Active</option>
+            </select>
+            {errors.activeStatus && <span className="form_hook_error">This field is required</span>}
+          </div>
+
+
+
+
+
+
+          <div className="row">
+            <label
+              htmlFor="author"
+              className="form-label px-0 mt-2 h6 ">
+              Author
+            </label>
+            <input
+              className=" input_field_style form-control form-control-lg mb-0  border-0  rounded-0"
+              {...register("author", { required: true })}
+              placeholder="Author"
+            />
+            {errors.author && <span className="form_hook_error">This field is required</span>}
+          </div>
+
+
+
+
+
+
+
 
           <div className="mt-3 d-flex justify-content-end  gap-2">
             <Button
@@ -105,15 +151,11 @@ export default function AddCategoryDialog() {
               Cancel
             </Button>
 
-            {isLoading ? (
-              <CustomSpinner />
-            ) : (
-              <Button
-                type="submit"
-                className="customCard px-4">
-                Add
-              </Button>
-            )}
+            <Button
+              type="submit"
+              className={isLoading ? "not-allowed text-success customCard px-4" : "customCard px-4"}>
+              {isLoading ? "Creating..." : "Add"}
+            </Button>
           </div>
         </form>
       </Dialog>

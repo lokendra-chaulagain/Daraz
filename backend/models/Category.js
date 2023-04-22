@@ -9,6 +9,12 @@ const categorySchema = new mongoose.Schema(
       unique: true,
     },
 
+    author: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
     slug: {
       type: String,
       required: true,

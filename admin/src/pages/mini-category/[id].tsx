@@ -4,7 +4,7 @@ import EditBannerDialog from "../../components/category/EditBannerDialog";
 const Id = () => {
   return (
     <>
-     
+      <EditBannerDialog />
     </>
   );
 };

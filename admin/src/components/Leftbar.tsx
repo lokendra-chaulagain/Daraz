@@ -35,6 +35,18 @@ const navItems = [
 
   {
     icon: <MdOutlineCategory />,
+    label: "Sub-Category",
+    route: "/sub-category",
+  },
+
+  {
+    icon: <MdOutlineCategory />,
+    label: "Mini-Category",
+    route: "/mini-category",
+  },
+
+  {
+    icon: <MdOutlineCategory />,
     label: "Color",
     route: "/color",
   },

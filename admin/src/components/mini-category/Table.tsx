@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 import TableHeading from "../TableHeading";
-import AddCategoryDialog from "./AddCategoryDialog";
 import { MdDelete } from "react-icons/md";
 import Image from "next/image";
-import { useDeleteCategoryMutation, useGetAllCategoryQuery } from "../../rtk/api/globalApi";
+import { useDeleteMiniCategoryMutation, useGetAllMiniCategoryQuery } from "../../rtk/api/globalApi";
 import moment from "moment";
 import { AiTwotoneEdit } from "react-icons/ai";
 import Link from "next/link";
 import { DeleteToaster } from "../../helper/toast";
 import SpinnerSmall from "../spinner/SpinnerSmall";
 
-export default function CategoryTable() {
-  const { data } = useGetAllCategoryQuery<any>();
-  const categories = data && data.data;
+export default function Table() {
+  const { data } = useGetAllMiniCategoryQuery<any>();
+  const miniCategories = data && data.data;
 
-  const [deleteCategory, { isLoading: deleting, isSuccess, isError, error, data: deletedData }] = useDeleteCategoryMutation();
-  const [deletingCategoryId, setDeletingCategoryId] = useState<string>("");
-  const handleDeleteCategory = (id: string) => {
-    setDeletingCategoryId(id);
-    DeleteToaster(deleteCategory, id, "Deleting category...", "Category deleted successfully", "Failed to delete category");
+  const [deleteMiniCategory, { isLoading: deleting, isSuccess, isError, error, data: deletedData }] = useDeleteMiniCategoryMutation();
+  const [deletingMiniCategoryId, setDeletingMiniCategoryId] = useState<string>("");
+  const handleMiniDeleteCategory = (id: string) => {
+    setDeletingMiniCategoryId(id);
+    DeleteToaster(deleteMiniCategory, id, "Deleting category...", "Category deleted successfully", "Failed to delete category");
   };
 
-  const headers = ["S.N", "Category Image", "Name", "Slug", "Status", "Author", "CreatedAt", "UpdatedAt", "Actions"];
+  const headers = ["S.N", "Category Image", "Name", "Slug", "Status", "Author", "Category", "Sub-Category", "CreatedAt", "UpdatedAt", "Actions"];
 
   return (
     <>
       <div className="d-flex align-items-center  ">
-        <TableHeading heading={"All Categories"} />
-        <AddCategoryDialog />
+        <TableHeading heading={"Mini miniCategories"} />
+        {/* <AddCategoryDialog /> */}
       </div>
 
       <div className="customCard mt-2 mb-5 ">
@@ -44,8 +43,8 @@ export default function CategoryTable() {
             </tr>
           </thead>
           <tbody>
-            {categories &&
-              categories.map((category: any, index: any) => (
+            {miniCategories &&
+              miniCategories.map((category: any, index: any) => (
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
@@ -67,6 +66,8 @@ export default function CategoryTable() {
                   <td>{category.slug}</td>
                   <td>{category.activeStatus}</td>
                   <td>{category.author}</td>
+                  <td>{category.category ? category.category.name : "NA"}</td>
+                  <td>{category.subCategory ? category.subCategory.name : "NA"}</td>
                   <td>{moment(category.createdAt).fromNow()}</td>
                   <td>{moment(category.updatedAt).fromNow()}</td>
 
@@ -79,12 +80,12 @@ export default function CategoryTable() {
                       </Link>
 
                       <div>
-                        {deletingCategoryId === category._id ? (
+                        {deletingMiniCategoryId === category._id ? (
                           <SpinnerSmall />
                         ) : (
                           <MdDelete
                             className="delete_button_icon"
-                            onClick={() => handleDeleteCategory(category._id)}
+                            onClick={() => handleMiniDeleteCategory(category._id)}
                             aria-label="delete"
                           />
                         )}

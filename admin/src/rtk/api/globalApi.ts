@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { SearchTag, Banner, Category, Size, Color, Genre } from "../type/type";
+import { SearchTag, Banner, Category, SubCategory, Size, MiniCategory, Color, Genre } from "../type/type";
 
 export const globalApi = createApi({
   reducerPath: "globalApi",
@@ -7,7 +7,7 @@ export const globalApi = createApi({
     baseUrl: "http://localhost:4000/api/",
   }),
 
-  tagTypes: ["SearchTag", "Banner", "Category", "Size", "Color", "Genre"],
+  tagTypes: ["SearchTag", "Banner", "Category", "SubCategory", "MiniCategory", "Size", "Color", "Genre"],
   endpoints: (builder) => ({
     getAllSearchTag: builder.query<SearchTag[], void>({
       query() {
@@ -19,7 +19,7 @@ export const globalApi = createApi({
       providesTags: ["SearchTag"],
     }),
 
-    getSingleSearchTag: builder.query<SearchTag, number>({
+    getSingleSearchTag: builder.query<SearchTag, string>({
       query(id) {
         return {
           url: `/search-tag/${id}`,
@@ -40,7 +40,7 @@ export const globalApi = createApi({
       invalidatesTags: ["SearchTag"],
     }),
 
-    updateSearchTag: builder.mutation<SearchTag, { id: number; updatedData: FormData }>({
+    updateSearchTag: builder.mutation<SearchTag, { id: string; updatedData: FormData }>({
       query({ id, updatedData }) {
         return {
           url: `/search-tag/${id}`,
@@ -52,7 +52,7 @@ export const globalApi = createApi({
       invalidatesTags: ["SearchTag"],
     }),
 
-    deleteSearchTag: builder.mutation<SearchTag, number>({
+    deleteSearchTag: builder.mutation<SearchTag, string>({
       query(id) {
         return {
           url: `/search-tag/${id}`,
@@ -80,7 +80,6 @@ export const globalApi = createApi({
       },
       providesTags: ["Banner"],
     }),
-
 
     createBanner: builder.mutation<Banner, FormData>({
       query(newBanner) {
@@ -123,11 +122,10 @@ export const globalApi = createApi({
           url: `/category`,
         };
       },
-      transformResponse: (res: Category[]) => res.sort((a: any, b: any) => b.id - a.id),
       providesTags: ["Category"],
     }),
 
-    getSingleCategory: builder.query<Category, number>({
+    getSingleCategory: builder.query<Category, string>({
       query(id) {
         return {
           url: `/category/${id}`,
@@ -148,7 +146,7 @@ export const globalApi = createApi({
       invalidatesTags: ["Category"],
     }),
 
-    updateCategory: builder.mutation<Category, { id: number; updatedData: FormData }>({
+    updateCategory: builder.mutation<Category, { id: string; updatedData: FormData }>({
       query({ id, updatedData }) {
         return {
           url: `/category/${id}`,
@@ -160,7 +158,7 @@ export const globalApi = createApi({
       invalidatesTags: ["Category"],
     }),
 
-    deleteCategory: builder.mutation<Category, number>({
+    deleteCategory: builder.mutation<Category, string>({
       query(id) {
         return {
           url: `/category/${id}`,
@@ -168,6 +166,112 @@ export const globalApi = createApi({
         };
       },
       invalidatesTags: ["Category"],
+    }),
+
+    // subCategory
+    getAllSubCategory: builder.query<SubCategory[], void>({
+      query() {
+        return {
+          url: `/subCategory`,
+        };
+      },
+      providesTags: ["SubCategory"],
+    }),
+
+    getSingleSubCategory: builder.query<SubCategory, string>({
+      query(id) {
+        return {
+          url: `/subCategory/${id}`,
+        };
+      },
+      providesTags: ["SubCategory"],
+    }),
+
+    createSubCategory: builder.mutation<SubCategory, FormData>({
+      query(newCategory) {
+        return {
+          url: "/subCategory",
+          method: "POST",
+
+          body: newCategory,
+        };
+      },
+      invalidatesTags: ["SubCategory"],
+    }),
+
+    updateSubCategory: builder.mutation<SubCategory, { id: string; updatedData: FormData }>({
+      query({ id, updatedData }) {
+        return {
+          url: `/subCategory/${id}`,
+          method: "PATCH",
+
+          body: updatedData,
+        };
+      },
+      invalidatesTags: ["SubCategory"],
+    }),
+
+    deleteSubCategory: builder.mutation<SubCategory, string>({
+      query(id) {
+        return {
+          url: `/subCategory/${id}`,
+          method: "Delete",
+        };
+      },
+      invalidatesTags: ["Category"],
+    }),
+
+    // miniCategory
+    getAllMiniCategory: builder.query<MiniCategory[], void>({
+      query() {
+        return {
+          url: `/miniCategory`,
+        };
+      },
+      providesTags: ["MiniCategory"],
+    }),
+
+    getSingleMiniCategory: builder.query<MiniCategory, string>({
+      query(id) {
+        return {
+          url: `/miniCategory/${id}`,
+        };
+      },
+      providesTags: ["MiniCategory"],
+    }),
+
+    createMiniCategory: builder.mutation<MiniCategory, FormData>({
+      query(newCategory) {
+        return {
+          url: "/miniCategory",
+          method: "POST",
+
+          body: newCategory,
+        };
+      },
+      invalidatesTags: ["MiniCategory"],
+    }),
+
+    updateMiniCategory: builder.mutation<MiniCategory, { id: string; updatedData: FormData }>({
+      query({ id, updatedData }) {
+        return {
+          url: `/miniCategory/${id}`,
+          method: "PATCH",
+
+          body: updatedData,
+        };
+      },
+      invalidatesTags: ["MiniCategory"],
+    }),
+
+    deleteMiniCategory: builder.mutation<MiniCategory, string>({
+      query(id) {
+        return {
+          url: `/miniCategory/${id}`,
+          method: "Delete",
+        };
+      },
+      invalidatesTags: ["MiniCategory"],
     }),
 
     //Size===============================================>
@@ -224,7 +328,7 @@ export const globalApi = createApi({
       invalidatesTags: ["Color"],
     }),
 
-    deleteColor: builder.mutation<Color, number>({
+    deleteColor: builder.mutation<Color, string>({
       query(id) {
         return {
           url: `/color/${id}`,
@@ -302,11 +406,26 @@ export const {
   useDeleteBannerMutation,
   useUpdateBannerMutation,
 
+  // category
   useCreateCategoryMutation,
   useDeleteCategoryMutation,
   useGetAllCategoryQuery,
   useUpdateCategoryMutation,
   useGetSingleCategoryQuery,
+
+  // sub-category
+  useCreateSubCategoryMutation,
+  useUpdateSubCategoryMutation,
+  useDeleteSubCategoryMutation,
+  useGetAllSubCategoryQuery,
+  useGetSingleSubCategoryQuery,
+
+  // mini-category
+  useCreateMiniCategoryMutation,
+  useUpdateMiniCategoryMutation,
+  useDeleteMiniCategoryMutation,
+  useGetAllMiniCategoryQuery,
+  useGetSingleMiniCategoryQuery,
 
   useCreateSizeMutation,
   useDeleteSizeMutation,

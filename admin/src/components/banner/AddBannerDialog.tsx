@@ -120,7 +120,7 @@ export default function AddBannerDialog() {
 
             <Button
               type="submit"
-              className={isLoading ? "not-allowed  customCard px-4" : "customCard px-4"}>
+              className={isLoading ? "not-allowed text-success  customCard px-4" : "customCard px-4"}>
               {isLoading ? "Creating..." : "Add"}
             </Button>
           </div>

@@ -42,6 +42,10 @@ body {
   color: var(--text-muted);
 }
 
+.color_orange{
+  color: #ed6c02 !important;
+}
+
 .customSecondaryColor {
   color: var(--color-secondary);
 }
@@ -246,6 +250,12 @@ body {
   background-color: var(--dark-color);
   border-radius: 50px;
   padding: 5px;
+}
+
+.delete_spinner{
+  color: rgb(230, 41, 41);
+  height: 26px !important;
+  width: 26px !important;
 }
 
 .delete_button_icon {

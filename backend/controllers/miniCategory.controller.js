@@ -62,7 +62,7 @@ export const updateMiniCategory = async (req, res) => {
     }
 
     const imageUrl = await uploadSingleFile(req.file);
-    
+
     let slug = miniCategory.slug;
     if (req.body.name) {
       slug = generateSlug(req.body.name);
@@ -146,7 +146,15 @@ export const getMiniCategoryBySlug = async (req, res) => {
 
 export const getAllMiniCategory = async (req, res) => {
   try {
-    const miniCategories = await MiniCategory.find();
+    const miniCategories = await MiniCategory.find()
+      .populate({
+        path: "category",
+        model: "Category",
+      })
+      .populate({
+        path: "subCategory",
+        model: "SubCategory",
+      });
     return res.status(200).json({ success: true, msg: "Get success", data: miniCategories });
   } catch (error) {
     return res.status(500).json({

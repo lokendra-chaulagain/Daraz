@@ -84,7 +84,10 @@ export const deleteSubCategory = async (req, res) => {
 
 export const getAllSubCategory = async (req, res) => {
   try {
-    const subCategories = await SubCategory.find();
+    const subCategories = await SubCategory.find().populate({
+      path: "category",
+      model: "Category",
+    });
     return res.status(200).json({ success: true, msg: "Get success", data: subCategories });
   } catch (error) {
     return res.status(500).json({

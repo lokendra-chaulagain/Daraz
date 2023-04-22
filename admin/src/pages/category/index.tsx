@@ -1,6 +1,6 @@
 import React from "react";
-import CategoryTable from "../components/category/CategoryTable";
-import Header from "../components/Header";
+import Header from "../../components/Header";
+import CategoryTable from "../../components/category/CategoryTable";
 
 function Category() {
   return (

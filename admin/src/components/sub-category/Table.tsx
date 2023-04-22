@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 import TableHeading from "../TableHeading";
-import AddCategoryDialog from "./AddCategoryDialog";
 import { MdDelete } from "react-icons/md";
-import Image from "next/image";
-import { useDeleteCategoryMutation, useGetAllCategoryQuery } from "../../rtk/api/globalApi";
+import { useDeleteSubCategoryMutation, useGetAllSubCategoryQuery } from "../../rtk/api/globalApi";
 import moment from "moment";
 import { AiTwotoneEdit } from "react-icons/ai";
 import Link from "next/link";
 import { DeleteToaster } from "../../helper/toast";
 import SpinnerSmall from "../spinner/SpinnerSmall";
 
-export default function CategoryTable() {
-  const { data } = useGetAllCategoryQuery<any>();
-  const categories = data && data.data;
+export default function Table() {
+  const { data, refetch } = useGetAllSubCategoryQuery<any>();
+  const subCategories = data && data.data;
 
-  const [deleteCategory, { isLoading: deleting, isSuccess, isError, error, data: deletedData }] = useDeleteCategoryMutation();
-  const [deletingCategoryId, setDeletingCategoryId] = useState<string>("");
-  const handleDeleteCategory = (id: string) => {
-    setDeletingCategoryId(id);
-    DeleteToaster(deleteCategory, id, "Deleting category...", "Category deleted successfully", "Failed to delete category");
+  const [deleteSubCategory, { isLoading: deleting, isSuccess, isError, error, data: deletedData }] = useDeleteSubCategoryMutation();
+  const [deletingSubCategoryId, setDeletingSubCategoryId] = useState<string>("");
+  const handleDeleteSubCategory = (id: string) => {
+    setDeletingSubCategoryId(id);
+    DeleteToaster(deleteSubCategory, id, "Deleting sub-category...", "Sub-Category deleted successfully", "Failed to delete sub-category");
+    refetch();
   };
 
-  const headers = ["S.N", "Category Image", "Name", "Slug", "Status", "Author", "CreatedAt", "UpdatedAt", "Actions"];
+  const headers = ["S.N", "Name", "Slug", "Status", "Author", "Category", "CreatedAt", "UpdatedAt", "Actions"];
 
   return (
     <>
       <div className="d-flex align-items-center  ">
-        <TableHeading heading={"All Categories"} />
-        <AddCategoryDialog />
+        <TableHeading heading={"Sub subCategories"} />
+        {/* <AddCategoryDialog /> */}
       </div>
 
       <div className="customCard mt-2 mb-5 ">
@@ -44,29 +43,17 @@ export default function CategoryTable() {
             </tr>
           </thead>
           <tbody>
-            {categories &&
-              categories.map((category: any, index: any) => (
+            {subCategories &&
+              subCategories.map((category: any, index: any) => (
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
                   <th scope="row">{index + 1}</th>
-
-                  <td>
-                    <div className="banner_table_image_div">
-                      <Image
-                        src={category.image}
-                        quality={50}
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-1"
-                        alt="img"
-                      />
-                    </div>
-                  </td>
                   <td>{category.name}</td>
                   <td>{category.slug}</td>
                   <td>{category.activeStatus}</td>
                   <td>{category.author}</td>
+                  <td>{category.category ? category.category.name :"NA"}</td>
                   <td>{moment(category.createdAt).fromNow()}</td>
                   <td>{moment(category.updatedAt).fromNow()}</td>
 
@@ -79,12 +66,12 @@ export default function CategoryTable() {
                       </Link>
 
                       <div>
-                        {deletingCategoryId === category._id ? (
+                        {deletingSubCategoryId === category._id ? (
                           <SpinnerSmall />
                         ) : (
                           <MdDelete
                             className="delete_button_icon"
-                            onClick={() => handleDeleteCategory(category._id)}
+                            onClick={() => handleDeleteSubCategory(category._id)}
                             aria-label="delete"
                           />
                         )}

@@ -9,6 +9,12 @@ const miniCategorySchema = new mongoose.Schema(
       unique: true,
     },
 
+    author: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
     image: {
       type: String,
       required: true,
