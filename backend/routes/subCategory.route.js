@@ -4,8 +4,8 @@ import { createSubCategory, deleteSubCategory, getAllSubCategory, updateSubCateg
 import validate from "../validation/validation-middleware.js";
 import subCategory from "../validation/subCategory.validation.js";
 
-router.post("/", validate(subCategory), createSubCategory);
-router.put("/:id", updateSubCategory);
+router.post("/",  createSubCategory);
+router.patch("/:id", updateSubCategory);
 router.get("/", getAllSubCategory);
 router.delete("/:id", deleteSubCategory);
 

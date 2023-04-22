@@ -13,12 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/TextEditor.tsx", "src/components/vacancy/EditVacancyTable.js", "src/components/vacancy/CreateVacancyTable.js", "src/components/review/AddReviewDialog.js", "src/components/product/EditProductTable.tsx", "src/components/product/AddProductTable.tsx", "src/components/partner/EditPartnerTable.js", "src/components/eventBanner/EditEventBannerDialog.js", "src/components/eventBanner/AddEventBannerDialog.js", "src/components/category/EditBannerDialog.tsx", "src/components/category/AddCategoryDialog.tsx", "src/components/blog/EditBlogTable.js", "src/components/blog/AddBlogTable.js", "src/components/banner/AddBannerDialog.tsx", "src/components/partner/AddPartnerDialog.js"],
   "exclude": ["node_modules"]
 }

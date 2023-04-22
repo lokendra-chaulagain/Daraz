@@ -1,7 +1,8 @@
 import { uploadSingleFile } from "../middlewares/uploadSingleFile.js";
-import createError from "../utils/error.js";
 import generateSlug from "../utils/generateSlug.js";
 import MiniCategory from "../models/MiniCategory.js";
+import cloudinary from "../config/cloudinaryConfig.js";
+import multer from "multer";
 
 export const createMiniCategory = async (req, res) => {
   try {
@@ -13,18 +14,26 @@ export const createMiniCategory = async (req, res) => {
     res.status(201).json({
       msg: "Create Success",
       success: true,
-      savedMiniCategory,
+      file_upload: imageUrl && "ok",
+      data: savedMiniCategory,
     });
   } catch (error) {
     if (error.code === 11000) {
       res.status(400).json({
-        msg: "Duplicate Name or Slug",
+        msg: "Duplicate name or slug",
         success: false,
+        error: error.message,
+      });
+    } else if (error instanceof multer.MulterError) {
+      // Handle Multer errors
+      res.status(400).json({
+        success: false,
+        message: "Invalid file uploaded",
         error: error.message,
       });
     } else {
       res.status(500).json({
-        msg: "Something Went Wrong",
+        msg: "Something went wrong",
         success: false,
         error: error.message,
       });
@@ -32,36 +41,118 @@ export const createMiniCategory = async (req, res) => {
   }
 };
 
-export const updateMiniCategory = async (req, res, next) => {
+export const updateMiniCategory = async (req, res) => {
   try {
-    const updatedMiniCategory = await miniCategory.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    res.status(200).json(updatedMiniCategory);
-  } catch (error) {
-    return next(createError(500, "Something Went Wrong"));
-  }
-};
+    const miniCategory = await MiniCategory.findById(req.params.id);
+    if (!miniCategory) {
+      return res.status(404).json({ success: false, msg: "MiniCategory not found" });
+    }
 
-export const deleteMiniCategory = async (req, res, next) => {
-  try {
-    const deletedMiniCategory = await MiniCategory.findByIdAndDelete(req.params.id);
+    const previousImageUrl = miniCategory.image;
+    const publicId = previousImageUrl.split("/").slice(-2).join("/").split(".")[0];
+
+    let previousImageDeleted;
+    try {
+      previousImageDeleted = await cloudinary.uploader.destroy(publicId);
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        msg: "Something went wrong while deleting previous image from Cloudinary",
+      });
+    }
+
+    const imageUrl = await uploadSingleFile(req.file);
+    
+    let slug = miniCategory.slug;
+    if (req.body.name) {
+      slug = generateSlug(req.body.name);
+    }
+
+    const updatedMiniCategory = await MiniCategory.findByIdAndUpdate(req.params.id, { ...req.body, slug: slug, image: imageUrl }, { new: true });
     res.status(200).json({
-      msg: "Deleted Successfully",
+      msg: "Update success",
       success: true,
-      deletedMiniCategory,
+      previous_file_delete: previousImageDeleted.result,
+      current_file_upload: imageUrl && "ok",
+      data: updatedMiniCategory,
     });
   } catch (error) {
-    return next(createError(500, "Something Went Wrong"));
+    if (error instanceof multer.MulterError) {
+      // Handle Multer errors
+      res.status(400).json({
+        success: false,
+        message: "Invalid file uploaded",
+        error: error.message,
+      });
+    } else {
+      return res.status(500).json({
+        success: false,
+        msg: "Something went wrong",
+      });
+    }
   }
 };
 
-export const getAllMiniCategory = async (req, res, next) => {
+export const deleteMiniCategory = async (req, res) => {
+  try {
+    const miniCategory = await MiniCategory.findById(req.params.id);
+    if (!miniCategory) {
+      return res.status(404).json({ success: false, msg: "MiniCategory not found" });
+    }
+
+    const imageUrl = miniCategory.image;
+    const publicId = imageUrl.split("/").slice(-2).join("/").split(".")[0];
+
+    let result;
+    try {
+      result = await cloudinary.uploader.destroy(publicId);
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        msg: "Something went wrong while deleting image from Cloudinary",
+      });
+    }
+
+    const deletedMiniCategory = await MiniCategory.findByIdAndDelete(req.params.id);
+    return res.status(200).json({
+      success: true,
+      msg: "Deleted success",
+      file_delete: result.result,
+      data: deletedMiniCategory,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      msg: "Something went wrong",
+    });
+  }
+};
+
+export const getMiniCategoryBySlug = async (req, res) => {
+  try {
+    const miniCategory = await MiniCategory.findOne({ slug: req.params.slug });
+    if (!miniCategory) {
+      return res.status(404).json({ success: false, msg: "MiniCategory not found" });
+    }
+    return res.status(200).json({ success: true, msg: "Get success", data: miniCategory });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Something went wrong",
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+export const getAllMiniCategory = async (req, res) => {
   try {
     const miniCategories = await MiniCategory.find();
-    const totalMiniCategories = await MiniCategory.countDocuments();
-    res.status(200).json({ msg: "Fetched Success", success: true, totalMiniCategories, miniCategories });
+    return res.status(200).json({ success: true, msg: "Get success", data: miniCategories });
   } catch (error) {
-    return next(createError(500, "Something Went Wrong"));
+    return res.status(500).json({
+      msg: "Something went wrong",
+      success: false,
+      error: error.message,
+    });
   }
 };

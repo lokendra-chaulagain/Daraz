@@ -31,12 +31,12 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "welcome to the server" });
 });
 
-app.use(validate)
 
 app.use("/api/banner", bannerRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/subCategory", subCategoryRoute);
 app.use("/api/miniCategory", miniCategoryRoute);
+
 
 //portListening
 app.listen(port, (error) => {

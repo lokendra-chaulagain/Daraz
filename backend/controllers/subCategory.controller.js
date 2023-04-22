@@ -1,30 +1,28 @@
-import mongoose from "mongoose";
 import SubCategory from "../models/SubCategory.js";
-import createError from "../utils/error.js";
-import slugify from "slugify";
 import generateSlug from "../utils/generateSlug.js";
 
-const createSubCategory = async (req, res, next) => {
+export const createSubCategory = async (req, res, next) => {
   try {
     const slug = generateSlug(req.body.name);
 
     const subCategory = new SubCategory({ ...req.body, slug: slug });
     const savedSubCategory = await subCategory.save();
+
     res.status(201).json({
       msg: "Create Success",
       success: true,
-      savedSubCategory,
+      data: savedSubCategory,
     });
   } catch (error) {
     if (error.code === 11000) {
       res.status(400).json({
-        msg: "Duplicate Name or Slug",
+        msg: "Duplicate name or slug",
         success: false,
         error: error.message,
       });
     } else {
       res.status(500).json({
-        msg: "Something Went Wrong",
+        msg: "Something went wrong",
         success: false,
         error: error.message,
       });
@@ -32,37 +30,67 @@ const createSubCategory = async (req, res, next) => {
   }
 };
 
-const updateSubCategory = async (req, res, next) => {
+export const updateSubCategory = async (req, res) => {
   try {
-    const updatedSubCategory = await SubCategory.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    res.status(200).json(updatedSubCategory);
-  } catch (error) {
-    return next(createError(500, "Something Went Wrong"));
-  }
-};
+    const subCategory = await SubCategory.findById(req.params.id);
+    if (!subCategory) {
+      return res.status(404).json({ success: false, msg: "SubCategory not found" });
+    }
 
-const deleteSubCategory = async (req, res, next) => {
-  try {
-    const deletedSubCategory = await SubCategory.findByIdAndDelete(req.params.id);
-    res.status(200).json({
-      msg: "Deleted Successfully",
+    const slug = generateSlug(req.body.name);
+
+    const updatedSubCategory = await SubCategory.findByIdAndUpdate(
+      req.params.id,
+      { ...req.body, slug: slug },
+      {
+        new: true,
+      }
+    );
+
+    return res.status(200).json({
+      msg: "Update success",
       success: true,
-      deletedSubCategory,
+      data: updatedSubCategory,
     });
   } catch (error) {
-    return next(createError(500, "Something Went Wrong"));
+    return res.status(500).json({
+      success: false,
+      msg: "Something went wrong",
+    });
   }
 };
 
-const getAllSubCategory = async (req, res, next) => {
+export const deleteSubCategory = async (req, res) => {
+  try {
+    const subCategory = await SubCategory.findById(req.params.id);
+    if (!subCategory) {
+      return res.status(404).json({ success: false, msg: "SubCategory not found" });
+    }
+
+    const deletedSubCategory = await SubCategory.findByIdAndDelete(req.params.id);
+
+    return res.status(200).json({
+      msg: "Deleted success",
+      success: true,
+      data: deletedSubCategory,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      msg: "Something went wrong",
+    });
+  }
+};
+
+export const getAllSubCategory = async (req, res) => {
   try {
     const subCategories = await SubCategory.find();
-    res.status(200).json({ msg: "Fetched Success", success: true, subCategories });
+    return res.status(200).json({ success: true, msg: "Get success", data: subCategories });
   } catch (error) {
-    return next(createError(500, "Something Went Wrong"));
+    return res.status(500).json({
+      msg: "Something went wrong",
+      success: false,
+      error: error.message,
+    });
   }
 };
-
-export { createSubCategory, updateSubCategory, deleteSubCategory, getAllSubCategory };

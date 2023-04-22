@@ -5,8 +5,8 @@ import upload from "../middlewares/multer.js";
 import validate from "../validation/validation-middleware.js";
 import category from "../validation/category.validation.js";
 
-router.post("/", validate(category), upload.single("image"), createCategory);
-router.put("/:id", updateCategory);
+router.post("/", upload.single("image"), createCategory);
+router.patch("/:id", upload.single("image"), updateCategory);
 router.get("/", getAllCategory);
 router.delete("/:id", deleteCategory);
 

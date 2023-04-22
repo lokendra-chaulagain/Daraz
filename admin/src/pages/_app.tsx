@@ -1,48 +1,52 @@
-import React from "react";
-import { Layout, theme } from "antd";
-import "@/styles/globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import type { AppProps } from "next/app";
-import Topbar from "@/components/Topbar";
-import Leftbar from "@/components/Leftbar";
-import CustomBreadCumb from "@/components/CustomBreadCumb";
-import Bottombar from "@/components/Bottombar";
-import Login from "@/components/Login";
+import "../styles/globals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import LeftAppBar from "../components/LeftBar";
+import Topbar from "../components/Topbar";
+import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import React from "react";
+import LoginBox from "../components/LoginBox";
 import { Provider } from "react-redux";
-import { store } from "@/redux/store/store";
-const { Content } = Layout;
-import { Toaster } from "react-hot-toast";
+import { store } from "../rtk/store/store";
 
-export default function App({ Component, pageProps }: AppProps) {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
-  const user = true;
+function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    import("bootstrap");
+  }, []);
 
   return (
     <Provider store={store}>
-      {user ? (
-        <Layout style={{ height: "95vh" }}>
-          <Topbar />
-          <Content style={{ padding: "0 10px" }}>
-            <CustomBreadCumb />
-            <Layout style={{ padding: "24px 0", background: colorBgContainer, height: "100%" }}>
-              <Leftbar />
-              <Content style={{ padding: "0 24px" }}>
-                <Component {...pageProps} />
-              </Content>
-            </Layout>
-          </Content>
-          <Bottombar />
-        </Layout>
-      ) : (
-        <Login />
-      )}
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
+      <div className="customBg h100 ">
+        <Topbar />
+        <div className="row">
+          <div className=" col-2 customLeftBar">
+            <LeftAppBar />
+          </div>
+
+          <div className="col-10 right_side_bg pe-3">
+            <Component {...pageProps} />
+          </div>
+        </div>
+      </div>
+
+      <LoginBox />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
       />
     </Provider>
   );
 }
+
+export default MyApp;

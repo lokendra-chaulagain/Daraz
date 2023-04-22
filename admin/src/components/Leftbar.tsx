@@ -1,260 +1,97 @@
-import React from "react";
-import { UserOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Layout, Menu, theme } from "antd";
-import "bootstrap/dist/css/bootstrap.min.css";
-const { Sider } = Layout;
-import { MailOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
-import { GrUserAdmin } from "react-icons/gr";
-import Link from "next/link";
-import { MdOutlineStorefront } from "react-icons/md";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import { useRouter } from "next/router";
+import { GrMail } from "react-icons/gr";
+import { FiGrid } from "react-icons/fi";
 import { GiVerticalBanner } from "react-icons/gi";
-import { AiOutlineTags } from "react-icons/ai";
+import { MdOutlineCategory } from "react-icons/md";
+import { BiSitemap } from "react-icons/bi";
+import { MdVoicemail } from "react-icons/md";
 
-const items: MenuProps["items"] = [
+const navItems = [
   {
-    label: "Admins",
-    key: "admin",
-    icon: <GrUserAdmin />,
-    children: [
-      {
-        type: "group",
-        children: [
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/admin"}>
-                Admin
-              </Link>
-            ),
-            key: "admin:1",
-          },
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/admin-settings"}>
-                Admin Settings
-              </Link>
-            ),
-            key: "admin:2",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Users",
-    key: "user",
-    icon: <UserOutlined />,
-    children: [
-      {
-        type: "group",
-        children: [
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/user"}>
-                User
-              </Link>
-            ),
-            key: "user:1",
-          },
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/user-settings"}>
-                User Settings
-              </Link>
-            ),
-            key: "user:2",
-          },
-        ],
-      },
-    ],
+    icon: <FiGrid />,
+    label: "Dashboard",
+    route: "/",
   },
 
   {
-    label: "Mails",
-    key: "mail",
-    icon: <MailOutlined />,
-    children: [
-      {
-        type: "group",
-        children: [
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/mail"}>
-                Mail
-              </Link>
-            ),
-            key: "mail:1",
-          },
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/subscriber"}>
-                Subscriber
-              </Link>
-            ),
-            key: "mail:2",
-          },
-        ],
-      },
-    ],
-  },
-
-  {
-    label: (
-      <Link
-        className="no_underline"
-        href={"/search-tag"}>
-        Search Tag
-      </Link>
-    ),
-    key: "search-tag",
-    icon: <AiOutlineTags />,
-  },
-
-  {
-    label: (
-      <Link
-        className="no_underline"
-        href={"/banner"}>
-        Banner
-      </Link>
-    ),
-    key: "banner",
     icon: <GiVerticalBanner />,
+    label: "Banner",
+    route: "/banner",
   },
 
   {
-    label: "Inventories",
-    key: "inventory",
-    icon: <MdOutlineStorefront />,
-    children: [
-      {
-        type: "group",
-        children: [
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/product"}>
-                Product
-              </Link>
-            ),
-            key: "inventory:1",
-          },
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/genre"}>
-                Genre
-              </Link>
-            ),
-            key: "inventory:2",
-          },
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/category"}>
-                Category
-              </Link>
-            ),
-            key: "inventory:3",
-          },
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/color"}>
-                Color
-              </Link>
-            ),
-            key: "inventory:4",
-          },
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/size"}>
-                Size
-              </Link>
-            ),
-            key: "inventory:5",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Settings",
-    key: "setting",
-    icon: <SettingOutlined />,
-    children: [
-      {
-        type: "group",
-        children: [
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/general-settings"}>
-                General-Settings
-              </Link>
-            ),
-            key: "setting:1",
-          },
-          {
-            label: (
-              <Link
-                className="no_underline"
-                href={"/logout"}>
-                Logout
-              </Link>
-            ),
-            key: "setting:2",
-          },
-        ],
-      },
-    ],
+    icon: <MdOutlineCategory />,
+    label: "Category",
+    route: "/category",
   },
 
   {
-    label: "Logout",
-    key: "logout",
-    icon: <LogoutOutlined />,
+    icon: <MdOutlineCategory />,
+    label: "Color",
+    route: "/color",
+  },
+
+  {
+    icon: <MdOutlineCategory />,
+    label: "Size",
+    route: "/size",
+  },
+
+  {
+    icon: <BiSitemap />,
+    label: "Product",
+    route: "/product",
+  },
+
+  {
+    icon: <GrMail />,
+    label: "Mails",
+    route: "/mail",
+  },
+
+  {
+    icon: <MdVoicemail />,
+    label: "Subscriber",
+    route: "/subscriber",
   },
 ];
 
-export default function Leftbar() {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+export default function LeftAppBar() {
+  const router = useRouter();
+
+  // NavSelection
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const handleListItemClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number) => {
+    setSelectedIndex(index);
+  };
 
   return (
-    <div>
-      <Sider
-        style={{ background: colorBgContainer }}
-        width={200}>
-        <Menu
-          className="no_selection no_underline"
-          mode="inline"
-          defaultSelectedKeys={["admin"]}
-          // defaultOpenKeys={["admin:1"]}
-          style={{ height: "100%" }}
-          items={items}
-        />
-      </Sider>
-    </div>
+    <Box style={{ height: "100vh" }}>
+      <List>
+        {navItems.map((item, index) => (
+          <ListItem
+            key={index}
+            disablePadding>
+            <ListItemButton
+              selected={selectedIndex === index}
+              onClick={(event) => {
+                handleListItemClick(event, index), router.push(item.route);
+              }}>
+              <ListItemIcon className="left_navbar_icon">{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+    </Box>
   );
 }

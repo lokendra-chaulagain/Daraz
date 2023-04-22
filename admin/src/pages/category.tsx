@@ -1,10 +1,13 @@
-import CategoryViewTable from "@/components/category/CategoryViewTable";
 import React from "react";
+import CategoryTable from "../components/category/CategoryTable";
+import Header from "../components/Header";
 
-export default function category() {
+function Category() {
   return (
-    <div>
-      <CategoryViewTable />
-    </div>
+    <>
+      <Header pageTitle={"Categories"} />
+      <CategoryTable />
+    </>
   );
 }
+export default Category;

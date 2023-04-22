@@ -1,10 +1,12 @@
-import SizeViewTable from "@/components/size/SizeViewTable";
 import React from "react";
+import SizeTable from "../components/size/SizeTable";
+import Header from "../components/Header";
 
-export default function Size() {
+export default function size() {
   return (
     <div>
-      <SizeViewTable />
+      <Header pageTitle={"Sizes"} />
+      <SizeTable />
     </div>
   );
 }
